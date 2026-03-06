@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parenthèse Urbaine — Phi-Haï Phan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Raleway:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --blanc: #ffffff;
+      --fond: #f9f8f6;
+      --noir: #111111;
+      --gris: #555550;
+      --gris-leger: #e8e6e0;
+      --gris-tres-leger: #f2f0ec;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--blanc); color: var(--noir); font-family: 'Raleway', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+    /* HEADER */
+    .site-header { padding: 1.4rem 6vw; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; border-bottom: 1px solid var(--gris-leger); }
+
+    /* Logo centré desktop */
+    .site-header .logo { display: flex; justify-content: center; }
+    .site-header .logo img { height: 44px; width: auto; display: block; }
+
+    /* Nav gauche desktop */
+    .site-header nav { display: flex; align-items: center; }
+    .site-header nav > a {
+      font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase;
+      text-decoration: none; color: var(--gris); margin-right: 2rem;
+      transition: color 0.2s;
+    }
+    .site-header nav > a:hover { color: var(--noir); }
+
+    /* Dropdown desktop — hover fluide avec pont invisible */
+    .dropdown { position: relative; margin-right: 2rem; }
+    .dropdown-btn {
+      font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--gris); background: none; border: none; cursor: pointer;
+      font-family: 'Raleway', sans-serif; font-weight: 300; padding: 0;
+      transition: color 0.2s; display: flex; align-items: center; gap: 0.3rem;
+    }
+    .dropdown-btn::after { content: '›'; font-size: 0.7rem; transition: transform 0.25s; display: inline-block; }
+    .dropdown:hover .dropdown-btn { color: var(--noir); }
+    .dropdown:hover .dropdown-btn::after { transform: rotate(90deg); }
+    .dropdown-menu {
+      visibility: hidden; opacity: 0; position: absolute;
+      top: 100%; left: 0; padding-top: 0.8rem;
+      transition: opacity 0.18s ease, visibility 0.18s ease;
+      z-index: 200;
+    }
+    .dropdown-menu-inner {
+      background: var(--blanc); border: 1px solid var(--gris-leger);
+      min-width: 190px; padding: 0.5rem 0;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+    .dropdown:hover .dropdown-menu { visibility: visible; opacity: 1; }
+    .dropdown-menu a {
+      display: block; padding: 0.55rem 1.2rem;
+      font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+      text-decoration: none; color: var(--gris); transition: color 0.2s; white-space: nowrap;
+    }
+    .dropdown-menu a:hover { color: var(--noir); }
+
+    /* Hamburger — caché desktop */
+    .site-header .header-right { display: none; justify-content: flex-end; }
+    .hamburger { display: flex; flex-direction: column; justify-content: center; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+    .hamburger span { display: block; width: 22px; height: 1px; background: var(--noir); }
+
+    /* HERO */
+
+    .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 85vh; }
+    .hero-img { position: relative; overflow: hidden; }
+    .hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s ease; }
+    .hero-img:hover img { transform: scale(1.03); }
+    .hero-text { display: flex; flex-direction: column; justify-content: flex-end; padding: 5vw 6vw 6vw; background: var(--blanc); }
+    .hero-label { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gris); margin-bottom: 1.6rem; }
+    .hero-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(2.8rem, 5vw, 5.5rem); line-height: 1.02; margin-bottom: 1.4rem; }
+    .hero-quote { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(1rem, 1.5vw, 1.2rem); color: var(--gris); line-height: 1.75; margin-bottom: 2.4rem; max-width: 380px; }
+    .hero-meta { font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: #bbb; padding-top: 2rem; border-top: 1px solid var(--gris-leger); }
+
+    /* INTRO */
+    .intro { padding: 6vw; max-width: 820px; margin: 0 auto; text-align: center; }
+    .intro p { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.05rem, 1.8vw, 1.28rem); line-height: 1.9; color: var(--gris); font-style: italic; }
+    .divider { width: 32px; height: 1px; background: var(--gris-leger); margin: 0 auto; }
+
+    /* COLLECTION */
+    .collection { padding: 0 5vw 8vw; }
+    .collection-header { padding: 4rem 0 3rem; display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid var(--gris-leger); }
+    .collection-header h2 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(1.4rem, 2.5vw, 2rem); }
+    .collection-header span { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gris); }
+
+    /* OEUVRE — layout 2 colonnes */
+    .oeuvre { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--gris-leger); }
+    .oeuvre:last-child { border-bottom: 1px solid var(--gris-leger); }
+    .oeuvre:nth-child(even) .oeuvre-img { order: 2; }
+    .oeuvre:nth-child(even) .oeuvre-txt { order: 1; }
+
+    .oeuvre-img { position: relative; overflow: hidden; aspect-ratio: 3/2; cursor: zoom-in; }
+    .oeuvre-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1s ease, filter 0.5s ease; filter: brightness(0.95); }
+    .oeuvre-img:hover img { transform: scale(1.04); filter: brightness(0.85); }
+
+    .oeuvre-txt { display: flex; flex-direction: column; justify-content: center; padding: 4vw 5vw; }
+    .oeuvre-num { font-size: 0.58rem; letter-spacing: 0.28em; text-transform: uppercase; color: #ccc; margin-bottom: 1.2rem; }
+    .oeuvre-title { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(1.4rem, 2.5vw, 2.2rem); margin-bottom: 1rem; line-height: 1.15; }
+    .oeuvre-desc { font-size: 0.82rem; line-height: 1.85; color: var(--gris); margin-bottom: 2rem; max-width: 360px; }
+    .oeuvre-specs { font-size: 0.65rem; letter-spacing: 0.1em; color: #bbb; line-height: 1.8; margin-bottom: 1.6rem; padding-bottom: 1.6rem; border-bottom: 1px solid var(--gris-tres-leger); }
+    .oeuvre-footer { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .oeuvre-price { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; }
+    .oeuvre-edition { font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: #bbb; margin-top: 0.2rem; }
+
+    /* OEUVRE pleine largeur (Traversée) */
+    .oeuvre-full { display: block; border-top: 1px solid var(--gris-leger); }
+    .oeuvre-full .oeuvre-img { aspect-ratio: 16/7; cursor: zoom-in; }
+    .oeuvre-full .oeuvre-txt { flex-direction: row; align-items: center; justify-content: space-between; padding: 2.4rem 5vw; gap: 4vw; flex-wrap: wrap; }
+    .oeuvre-full .col-left { min-width: 180px; }
+    .oeuvre-full .col-center { flex: 2; min-width: 240px; }
+    .oeuvre-full .col-right { min-width: 180px; text-align: right; }
+    .oeuvre-full .oeuvre-desc { margin-bottom: 0; }
+
+    /* BOUTON */
+    .btn { display: inline-block; padding: 0.7rem 1.4rem; background: var(--noir); color: var(--blanc); font-family: 'Raleway', sans-serif; font-size: 0.6rem; font-weight: 400; letter-spacing: 0.22em; text-transform: uppercase; text-decoration: none; cursor: pointer; border: 1px solid var(--noir); transition: background 0.3s, color 0.3s; }
+    .btn:hover { background: var(--blanc); color: var(--noir); }
+
+    /* ABOUT */
+    .about { background: var(--fond); display: grid; grid-template-columns: 1fr 1fr; }
+    .about-img { overflow: hidden; }
+    .about-img img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; filter: grayscale(10%); }
+    .about-txt { padding: 6vw; display: flex; flex-direction: column; justify-content: center; }
+    .about-txt .label { font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--gris); margin-bottom: 1.2rem; }
+    .about-txt h3 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(1.6rem, 2.5vw, 2.4rem); margin-bottom: 1.6rem; }
+    .about-txt p { font-size: 0.83rem; line-height: 1.9; color: var(--gris); margin-bottom: 1rem; }
+    .about-txt .links { margin-top: 1.6rem; display: flex; gap: 1.6rem; flex-wrap: wrap; }
+    .about-txt .links a { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--noir); text-decoration: none; border-bottom: 1px solid var(--gris-leger); padding-bottom: 0.2rem; transition: border-color 0.3s; }
+    .about-txt .links a:hover { border-color: var(--noir); }
+
+    /* ACQUISITION */
+    .acquisition { padding: 6vw; text-align: center; border-top: 1px solid var(--gris-leger); }
+    .acquisition h3 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(1.4rem, 2.5vw, 2rem); margin-bottom: 0.8rem; }
+    .acquisition p { font-size: 0.82rem; color: var(--gris); line-height: 1.8; margin-bottom: 2rem; }
+    .acq-links { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+    .acq-links a { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--noir); text-decoration: none; border-bottom: 1px solid var(--gris-leger); padding-bottom: 0.2rem; transition: border-color 0.3s; }
+    .acq-links a:hover { border-color: var(--noir); }
+
+    /* FOOTER */
+    footer { padding: 1.8rem 6vw; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--gris-leger); font-size: 0.6rem; letter-spacing: 0.14em; color: #bbb; flex-wrap: wrap; gap: 1rem; }
+
+    /* MODAL */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 100; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; padding: 2rem; }
+    .modal-overlay.active { opacity: 1; pointer-events: all; }
+    .modal { background: var(--blanc); max-width: 460px; width: 100%; padding: 2.8rem; border: 1px solid var(--gris-leger); transform: translateY(14px); transition: transform 0.3s; }
+    .modal-overlay.active .modal { transform: translateY(0); }
+    .modal .mlabel { font-size: 0.58rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--gris); margin-bottom: 0.5rem; }
+    .modal h4 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 1.5rem; margin-bottom: 0.3rem; }
+    .modal .mprice { font-size: 0.68rem; color: #bbb; margin-bottom: 1.8rem; padding-bottom: 1.4rem; border-bottom: 1px solid var(--gris-leger); }
+    .modal input, .modal textarea { width: 100%; background: var(--fond); border: 1px solid var(--gris-leger); color: var(--noir); font-family: 'Raleway', sans-serif; font-size: 0.82rem; font-weight: 300; padding: 0.75rem 1rem; margin-bottom: 0.7rem; outline: none; transition: border-color 0.3s; }
+    .modal input:focus, .modal textarea:focus { border-color: var(--noir); }
+    .modal textarea { min-height: 80px; resize: vertical; }
+    .modal-actions { display: flex; gap: 0.8rem; margin-top: 1.2rem; }
+    .btn-send { flex: 1; padding: 0.75rem; background: var(--noir); color: var(--blanc); border: 1px solid var(--noir); font-family: 'Raleway', sans-serif; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; cursor: pointer; transition: background 0.3s, color 0.3s; }
+    .btn-send:hover { background: var(--blanc); color: var(--noir); }
+    .btn-cancel { padding: 0.75rem 1.2rem; background: transparent; border: 1px solid var(--gris-leger); color: #aaa; font-family: 'Raleway', sans-serif; font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer; transition: border-color 0.3s, color 0.3s; }
+    .btn-cancel:hover { border-color: #aaa; color: var(--gris); }
+
+    /* LIGHTBOX */
+    .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.93); z-index: 200; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; padding: 2rem; }
+    .lightbox.active { opacity: 1; pointer-events: all; }
+    .lightbox img { max-width: 90vw; max-height: 88vh; object-fit: contain; }
+    .lightbox-close { position: absolute; top: 1.4rem; right: 2rem; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: #777; cursor: pointer; background: none; border: none; font-family: 'Raleway', sans-serif; transition: color 0.3s; }
+    .lightbox-close:hover { color: #fff; }
+
+    /* ── RESPONSIVE MOBILE ── */
+        /* Cacher le menu mobile sur desktop */
+    .mobile-menu { display: none; }
+
+    @media (max-width: 768px) {
+      .site-header { grid-template-columns: 1fr auto 1fr; }
+      .site-header nav { display: none; }
+      .site-header .header-right { display: flex !important; }
+      .mobile-menu { display: none; position: fixed; inset: 0; background: var(--blanc); z-index: 500; flex-direction: column; align-items: center; justify-content: center; gap: 2.4rem; }
+      .mobile-menu.active { display: flex; }
+      .mobile-menu a { font-size: 1.4rem; letter-spacing: 0.22em; text-transform: uppercase; text-decoration: none; color: var(--noir); font-family: 'Cormorant Garamond', serif; font-weight: 300; }
+      .mobile-menu .close-menu { position: absolute; top: 1.6rem; right: 2rem; font-size: 1.4rem; background: none; border: none; cursor: pointer; color: var(--gris); font-family: 'Raleway', sans-serif; }
+      .mobile-logo { height: 48px; width: auto; margin-bottom: 1rem; }
+      .mobile-menu-item { display: flex; flex-direction: column; align-items: center; }
+      .mobile-submenu-toggle { background: none; border: none; cursor: pointer; font-size: 1.4rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--noir); font-family: 'Cormorant Garamond', serif; font-weight: 300; display: flex; align-items: center; gap: 0.6rem; }
+      .mobile-submenu-toggle #portfolioArrow { display: inline-block; transition: transform 0.3s; font-style: normal; font-size: 1.2rem; }
+      .mobile-submenu-toggle.open #portfolioArrow { transform: rotate(90deg); }
+      .mobile-submenu { display: none; flex-direction: column; align-items: center; gap: 1.2rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--gris-leger); width: 100%; }
+      .mobile-submenu.active { display: flex; }
+      .mobile-submenu a { font-size: 0.75rem; letter-spacing: 0.28em; text-transform: uppercase; text-decoration: none; color: var(--gris); font-family: 'Raleway', sans-serif; font-weight: 300; }
+      .mobile-submenu a:hover { color: var(--noir); }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-img { aspect-ratio: 4/3; }
+      .hero-text { padding: 2.4rem 6vw 3rem; justify-content: flex-start; }
+      .oeuvre { grid-template-columns: 1fr; }
+      .oeuvre:nth-child(even) .oeuvre-img { order: 0; }
+      .oeuvre:nth-child(even) .oeuvre-txt { order: 0; }
+      .oeuvre-img { aspect-ratio: 4/3; }
+      .oeuvre-txt { padding: 2rem 5vw; }
+      .oeuvre-full .oeuvre-img { aspect-ratio: 4/3; }
+      .oeuvre-full .oeuvre-txt { flex-direction: column; padding: 2rem 5vw; gap: 1rem; }
+      .oeuvre-full .col-right { text-align: left; }
+      .about { grid-template-columns: 1fr; }
+      .about-img { aspect-ratio: 4/3; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <nav>
+    <a href="https://unisens.art">Accueil</a>
+    <div class="dropdown" id="dropPortfolio">
+      <button class="dropdown-btn">Portfolio</button>
+      <div class="dropdown-menu" id="dropPortfolioMenu">
+        <div class="dropdown-menu-inner">
+          <a href="https://unisens.art/mariagebordeaux">L'Union</a>
+          <a href="https://unisens.art/leregard">Le Regard</a>
+          <a href="https://unisens.art/parenthese-urbaine">Parenthèse Urbaine</a>
+        </div>
+      </div>
+    </div>
+    <div class="dropdown" id="dropApropos">
+      <button class="dropdown-btn">À propos</button>
+      <div class="dropdown-menu" id="dropAproposMenu">
+        <div class="dropdown-menu-inner">
+          <a href="https://unisens.art/approche">Mon approche</a>
+          <a href="https://unisens.art/temoignages">Témoignages</a>
+          <a href="https://unisens.art/contact">Contact</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <a href="https://unisens.art" class="logo">
+    <img src="https://images.squarespace-cdn.com/content/5c4ef2b55cfd797e18b902a9/3ec743bc-e2b7-4f80-8484-fcaeafc56907/Signature+Phi+Hai+Noir.png?content-type=image%2Fpng" alt="Phi-Haï Phan">
+  </a>
+  <div class="header-right">
+    <button class="hamburger" onclick="openMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- MENU MOBILE -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="close-menu" onclick="closeMenu()">✕</button>
+  <img class="mobile-logo" src="https://images.squarespace-cdn.com/content/5c4ef2b55cfd797e18b902a9/3ec743bc-e2b7-4f80-8484-fcaeafc56907/Signature+Phi+Hai+Noir.png?content-type=image%2Fpng" alt="Phi-Haï Phan">
+  <a href="https://unisens.art" onclick="closeMenu()">Accueil</a>
+  <div class="mobile-menu-item">
+    <button class="mobile-submenu-toggle" onclick="togglePortfolio()">
+      Portfolio <span id="portfolioArrow">›</span>
+    </button>
+    <div class="mobile-submenu" id="portfolioSubmenu">
+      <a href="https://unisens.art/mariagebordeaux" onclick="closeMenu()">L'Union</a>
+      <a href="https://unisens.art/leregard" onclick="closeMenu()">Le Regard</a>
+      <a href="https://unisens.art/parenthese-urbaine" onclick="closeMenu()">Parenthèse Urbaine</a>
+    </div>
+  </div>
+  <div class="mobile-menu-item">
+    <button class="mobile-submenu-toggle" onclick="toggleApropos()">
+      À propos <span id="aproposArrow">›</span>
+    </button>
+    <div class="mobile-submenu" id="aproposSubmenu">
+      <a href="https://unisens.art/approche" onclick="closeMenu()">Mon approche</a>
+      <a href="https://unisens.art/temoignages" onclick="closeMenu()">Témoignages</a>
+      <a href="https://unisens.art/contact" onclick="closeMenu()">Contact</a>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-img">
+    <img src="https://images.squarespace-cdn.com/content/5c4ef2b55cfd797e18b902a9/626a7135-daf9-49f9-a990-c99d8419c9ad/L%27%C3%A9treinte+suspendue.jpg?content-type=image%2Fjpeg" alt="L'étreinte suspendue — Parenthèse Urbaine">
+  </div>
+  <div class="hero-text">
+    <p class="hero-label">Série photographique · Bordeaux 2026</p>
+    <h1 class="hero-title">Parenthèse<br>Urbaine</h1>
+    <p class="hero-quote">Le métro n'est pas un lieu.<br>C'est un état.</p>
+    <p class="hero-meta">Paris · Londres<br>Éditions limitées — 7 exemplaires par œuvre</p>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro">
+  <p>Pendant des années, j'ai erré dans les souterrains du monde — Paris, Londres, Lisbonne, Los Angeles, Mexico, Panama. Des corps qui se croisent, se frôlent, se ratent. Des regards qui se posent une seconde puis disparaissent pour toujours. Ces sept images, captées à Paris et à Londres, sont nées de cette errance. Des fragments d'humanité que la vitesse aurait dû effacer. Le métal, la lumière froide, et dans cet entre-deux — des vies entières qui passent.</p>
+  <br><div class="divider"></div>
+</section>
+
+<!-- COLLECTION -->
+<section class="collection">
+  <div class="collection-header">
+    <h2>Les Sept Œuvres</h2>
+    <span>Impression Fine Art Rag · Caisse américaine bois noir</span>
+  </div>
+
+  <!-- 01 Traversée — pleine largeur -->
+  <div class="oeuvre" id="traversee">
+    <div class="oeuvre-img" onclick="openLightbox('https://images.squarespace-cdn.com/content/5c4ef2b55cfd797e18b902a9/41a2bdca-f9a5-4ff4-8a65-a2cdc096969a/Travers%C3%A9e.jpg?content-type=image%2Fjpeg')">
+      <img src="https://images.squarespace-cdn.com/content/5c4ef2b55cfd797e18b902a9/41a2bdca-f9a5-4ff4-8a65-a2cdc096969a/Travers%C3%A9e.jpg?content-type=image%2Fjpeg" alt="Traversée">
+    </div>
+    <div class="oeuvre-txt">
+      <div class="oeuvre-num">01 / 07</div>
+      <div class="oeuvre-title">« Traversée »</div>
+      <p class="oeuvre-desc">Un tunnel qui aspire vers l'inconnu — on ne comprend le passage qu'en le vivant. Image d'ouverture, invitation à entrer dans l'expérience sans savoir ce qui attend de l'autre côté.</p>
+      <div class="oeuvre-specs">Impression Fine Art Rag · Caisse américaine bois noir<br>Grand format · 75 × 50 cm</div>
+      <div class="oeuvre-footer">
+        <div><div class="oeuvre-price">750 €</div><div class="oeuvre-edition">Édition limitée — 7 ex.</div></div>
+        <a href="https://wa.me/33627710560?text=Bonjour%20Phi-Ha%C3%AF%2C%20je%20suis%20int%C3%A9ress%C3%A9%28e%29%20par%20l%27%C5%93uvre%20%C2%AB%20Travers%C3%A9e%20%C2%BB%20%28750%20%E2%82%AC%2C%20%C3%A9dition%20limit%C3%A9e%207%20ex.%29.%20Pouvez-vous%20me%20donner%20plus%20d%27informations%20%3F" class="btn" target="_blank">Acquérir</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 Reflets d'ailleurs -->
+  <div class="oeuvre" id="reflets">
+    <div class="oeuvre-img" onclick="openLightbox('https://images.squarespace-cdn.com/content/5c4ef2b55cfd797e18b902a9/d6ae117b-52b4-4be3-8e45-5bf27c3801fc/Reflets+d%27ailleurs.jpg?content-type=image%2Fjpeg')">
+      <img src="https://images.squarespace-cdn.com/content/5c4ef2b55cfd797e18b902a9/d6ae117b-52b4-4be3-8e45-5bf27c3801fc/Reflets+d%27ailleurs.jpg?content-type=image%2Fjpeg" alt="Reflets d'ailleurs">
+    </div>
+    <div class="oeuvre-txt">
+      <div class="oeuvre-num">02 / 07</div>
+      <div class="oeuvre-title">« Reflets d'ailleurs »</div>
+      <p class="oeuvre-desc">Les vitres superposent les mondes. Lumières diffuses, silhouettes fantômes, couleurs qui saignent dans le noir. Une présence mélancolique — là sans vraiment y être, dedans sans vraiment être dehors. Une rêverie urbaine dont on ne sait pas si elle appartient au présent ou au souvenir.</p>
+      <div class="oeuvre-specs">Impression Fine Art Rag · Caisse américaine bois noir<br>Format 50 × 33 cm</div>
+      <div class="oeuvre-footer">
+        <div><div class="oeuvre-price">490 €</div><div class="oeuvre-edition">Édition limitée — 7 ex.</div></div>
+        <a href="https://wa.me/33627710560?text=Bonjour%20Phi-Ha%C3%AF%2C%20je%20suis%20int%C3%A9ress%C3%A9%28e%29%20par%20l%27%C5%93uvre%20%C2%AB%20Reflets%20d%27ailleurs%20%C2%BB%20%28490%20%E2%82%AC%2C%20%C3%A9dition%20limit%C3%A9e%207%20ex.%29.%20Pouvez-vous%20me%20donner%20plus%20d%27informations%20%3F" class="btn" target="_blank">Acquérir</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 L'insaisissable -->
+  <div class="oeuvre" id="insaisissable">
+    <div class="oeuvre-img" onclick="openLightbox('https://images.squarespace-cdn.com/content/5c4ef2b55cfd797e18b902a9/f488c424-2b41-4448-9154-a85ce2cc5d9d/L%27insaisissable.jpg?content-type=image%2Fjpeg')">
+      <img src="https://images.squarespace-cdn.com/content/5c4ef2b55cfd797e18b902a9/f488c424-2b41-4448-9154-a85ce2cc5d9d/L%27insaisissable.jpg?content-type=image%2Fjpeg" alt="L'insaisissable">
+    </div>
+    <div class="oeuvre-txt">
+      <div class="oeuvre-num">03 / 07</div>
+      <div class="oeuvre-title">« L'insaisissable »</div>
+      <p class="oeuvre-desc">La femme rousse floue, déjà partie. La vie entière qui résiste à être contrôlée. On essaie de saisir, mais la vie continue d'avancer malgré nous. Elle fait diptyque avec Reflets d'ailleurs — lui qui reste, elle qui s'échappe.</p>
+      <div class="oeuvre-specs">Impression Fine Art Rag · Caisse américaine bois noir<br>Format 50 × 33 cm</div>
+      <div class="oeuvre-footer">
+        <div><div class="oeuvre-price">490 €</div><div class="oeuvre-edition">Édition limitée — 7 ex.</div></div>
+        <a href="https://wa.me/33627710560?text=Bonjour%20Phi-Ha%C3%AF%2C%20je%20suis%20int%C3%A9ress%C3%A9%28e%29%20par%20l%27%C5%93uvre%20%C2%AB%20L%27insaisissable%20%C2%BB%20%28490%20%E2%82%AC%2C%20%C3%A9dition%20limit%C3%A9e%207%20ex.%29.%20Pouvez-vous%20me%20donner%20plus%20d%27informations%20%3F" class="btn" target="_blank">Acquérir</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 Sans destination -->
+  <div class="oeuvre" id="sans-destination">
+    <div class="oeuvre-img" onclick="openLightbox('https://images.squarespace-cdn.com/content/5c4ef2b55cfd797e18b902a9/c25912d7-55c0-4871-9641-de17dcb91294/Sans+destination.jpg?content-type=image%2Fjpeg')">
+      <img src="https://images.squarespace-cdn.com/content/5c4ef2b55cfd797e18b902a9/c25912d7-55c0-4871-9641-de17dcb91294/Sans+destination.jpg?content-type=image%2Fjpeg" alt="Sans destination">
+    </div>
+    <div class="oeuvre-txt">
+      <div class="oeuvre-num">04 / 07</div>
+      <div class="oeuvre-title">« Sans destination »</div>
+      <p class="oeuvre-desc">Silhouette encapuchonnée de dos, Londres. On ne sait pas si elle arrive ou si elle fuit. L'errance non pas comme un échec mais comme partie du voyage — ne pas savoir où on va, c'est aussi une forme de liberté.</p>
+      <div class="oeuvre-specs">Impression Fine Art Rag · Caisse américaine bois noir<br>Format 50 × 33 cm</div>
+      <div class="oeuvre-footer">
+        <div><div class="oeuvre-price">490 €</div><div class="oeuvre-edition">Édition limitée — 7 ex.</div></div>
+        <a href="https://wa.me/33627710560?text=Bonjour%20Phi-Ha%C3%AF%2C%20je%20suis%20int%C3%A9ress%C3%A9%28e%29%20par%20l%27%C5%93uvre%20%C2%AB%20Sans%20destination%20%C2%BB%20%28490%20%E2%82%AC%2C%20%C3%A9dition%20limit%C3%A9e%207%20ex.%29.%20Pouvez-vous%20me%20donner%20plus%20d%27informations%20%3F" class="btn" target="_blank">Acquérir</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 L'étreinte suspendue -->
+  <div class="oeuvre" id="etreinte">
+    <div class="oeuvre-img" onclick="openLightbox('https://images.squarespace-cdn.com/content/5c4ef2b55cfd797e18b902a9/626a7135-daf9-49f9-a990-c99d8419c9ad/L%27%C3%A9treinte+suspendue.jpg?content-type=image%2Fjpeg')">
+      <img src="https://images.squarespace-cdn.com/content/5c4ef2b55cfd797e18b902a9/626a7135-daf9-49f9-a990-c99d8419c9ad/L%27%C3%A9treinte+suspendue.jpg?content-type=image%2Fjpeg" alt="L'étreinte suspendue">
+    </div>
+    <div class="oeuvre-txt">
+      <div class="oeuvre-num">05 / 07</div>
+      <div class="oeuvre-title">« L'étreinte suspendue »</div>
+      <p class="oeuvre-desc">Un couple enlacé dans la fenêtre du train en mouvement. Le temps s'arrête juste pour eux, figé dans la vitesse. Une bulle d'intimité suspendue au milieu du flux — universelle et mélancolique.</p>
+      <div class="oeuvre-specs">Impression Fine Art Rag · Caisse américaine bois noir<br>Grand format · 75 × 50 cm</div>
+      <div class="oeuvre-footer">
+        <div><div class="oeuvre-price">750 €</div><div class="oeuvre-edition">Édition limitée — 7 ex.</div></div>
+        <a href="https://wa.me/33627710560?text=Bonjour%20Phi-Ha%C3%AF%2C%20je%20suis%20int%C3%A9ress%C3%A9%28e%29%20par%20l%27%C5%93uvre%20%C2%AB%20L%27%C3%A9treinte%20suspendue%20%C2%BB%20%28750%20%E2%82%AC%2C%20%C3%A9dition%20limit%C3%A9e%207%20ex.%29.%20Pouvez-vous%20me%20donner%20plus%20d%27informations%20%3F" class="btn" target="_blank">Acquérir</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06 Grâce -->
+  <div class="oeuvre" id="grace">
+    <div class="oeuvre-img" onclick="openLightbox('https://images.squarespace-cdn.com/content/5c4ef2b55cfd797e18b902a9/7a28c10d-7983-4c1e-9222-4696bbc82b78/Gr%C3%A2ce.jpg?content-type=image%2Fjpeg')">
+      <img src="https://images.squarespace-cdn.com/content/5c4ef2b55cfd797e18b902a9/7a28c10d-7983-4c1e-9222-4696bbc82b78/Gr%C3%A2ce.jpg?content-type=image%2Fjpeg" alt="Grâce">
+    </div>
+    <div class="oeuvre-txt">
+      <div class="oeuvre-num">06 / 07</div>
+      <div class="oeuvre-title">« Grâce »</div>
+      <p class="oeuvre-desc">Seule nette dans le chaos. Image prise dans l'urgence, deux secondes pour régler l'appareil. Le hasard parfait. Elle rayonne sans le savoir, souveraine, dans sa bulle musicale.</p>
+      <div class="oeuvre-specs">Impression Fine Art Rag · Caisse américaine bois noir<br>Format 50 × 33 cm</div>
+      <div class="oeuvre-footer">
+        <div><div class="oeuvre-price">490 €</div><div class="oeuvre-edition">Édition limitée — 7 ex.</div></div>
+        <a href="https://wa.me/33627710560?text=Bonjour%20Phi-Ha%C3%AF%2C%20je%20suis%20int%C3%A9ress%C3%A9%28e%29%20par%20l%27%C5%93uvre%20%C2%AB%20Gr%C3%A2ce%20%C2%BB%20%28490%20%E2%82%AC%2C%20%C3%A9dition%20limit%C3%A9e%207%20ex.%29.%20Pouvez-vous%20me%20donner%20plus%20d%27informations%20%3F" class="btn" target="_blank">Acquérir</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 07 Les barreaux invisibles -->
+  <div class="oeuvre" id="barreaux">
+    <div class="oeuvre-img" onclick="openLightbox('https://images.squarespace-cdn.com/content/5c4ef2b55cfd797e18b902a9/fe59eeee-9550-4ab6-ba4a-658a251db6d3/Les+barreaux+invisibles.jpg?content-type=image%2Fjpeg')">
+      <img src="https://images.squarespace-cdn.com/content/5c4ef2b55cfd797e18b902a9/fe59eeee-9550-4ab6-ba4a-658a251db6d3/Les+barreaux+invisibles.jpg?content-type=image%2Fjpeg" alt="Les barreaux invisibles">
+    </div>
+    <div class="oeuvre-txt">
+      <div class="oeuvre-num">07 / 07</div>
+      <div class="oeuvre-title">« Les barreaux invisibles »</div>
+      <p class="oeuvre-desc">L'homme masqué, époque Covid. Les barreaux en premier plan évoquent la prison. L'aliénation ordinaire, le monde mécanique qui nous enferme sans qu'on s'en rende compte.</p>
+      <div class="oeuvre-specs">Impression Fine Art Rag · Caisse américaine bois noir<br>Format 50 × 33 cm</div>
+      <div class="oeuvre-footer">
+        <div><div class="oeuvre-price">490 €</div><div class="oeuvre-edition">Édition limitée — 7 ex.</div></div>
+        <a href="https://wa.me/33627710560?text=Bonjour%20Phi-Ha%C3%AF%2C%20je%20suis%20int%C3%A9ress%C3%A9%28e%29%20par%20l%27%C5%93uvre%20%C2%AB%20Les%20barreaux%20invisibles%20%C2%BB%20%28490%20%E2%82%AC%2C%20%C3%A9dition%20limit%C3%A9e%207%20ex.%29.%20Pouvez-vous%20me%20donner%20plus%20d%27informations%20%3F" class="btn" target="_blank">Acquérir</a>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="about-img" style="position:relative;">
+    <img src="https://images.squarespace-cdn.com/content/5c4ef2b55cfd797e18b902a9/eba1fdb1-aa55-4565-aa34-55ab4c252f0a/IMG_1908.jpg?content-type=image%2Fjpeg" alt="Phi-Haï Phan">
+    <span style="position: absolute; bottom: 0.8rem; right: 1rem; font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.55);">© APC Viaud</span>
+  </div>
+  <div class="about-txt">
+    <p class="label">Photographe d'auteur</p>
+    <h3>Phi-Haï Phan</h3>
+    <p>J'ai grandi dans une famille déracinée. Mon père a quitté le Vietnam en 1978 avec ma mère — elle a laissé sa famille derrière elle, et ne l'a pas revue avant 2007. Presque trente ans de silence et de distance.</p>
+    <p>En 2013, j'ai perdu Tonton — le compagnon de ma mère — sans l'avoir vraiment connu. Sans avoir gardé sa voix, sa façon d'être là. Ce regret est à l'origine de tout.</p>
+    <p>Parenthèse Urbaine est née de cette double errance — la mienne dans les métros du monde, celle de ma famille dans le temps et l'espace. Ces inconnus captés dans le mouvement, c'était une façon de réparer quelque chose.</p>
+    <p>Avec <em>Présence Intemporelle</em>, je n'entre plus dans des souterrains. J'entre dans l'intimité des familles pour capturer ce qu'on n'a pas le temps de dire avant qu'il soit trop tard.</p>
+    <p><em>Le même geste. Une autre intention.</em></p>
+    <div class="links">
+      <a href="https://unisens.art/approche">Mon approche</a>
+    </div>
+  </div>
+</section>
+
+<!-- ACQUISITION -->
+<section class="acquisition">
+  <h3>Acquérir une œuvre</h3>
+  <p>Les œuvres sont exposées physiquement jusqu'au 11 avril 2026 au concept store <a href="https://www.parfumetonart.com" target="_blank" style="color:var(--noir);text-decoration:underline;text-underline-offset:3px;">Parfume Ton Art</a> — 20 rue Castillon, Bordeaux.</p>
+  <p>Chaque tirage est signé, numéroté et livré avec son certificat d'authenticité.<br>Édition strictement limitée à 7 exemplaires par œuvre, tous supports et formats confondus.</p>
+  <div class="acq-links">
+    <a href="https://wa.me/33627710560" target="_blank">WhatsApp</a>
+    <a href="/cdn-cgi/l/email-protection#b3c3dbdadbd2da9dc3dbd2ddf3d4ded2dadf9dd0dcde"><span class="__cf_email__" data-cfemail="5a2a3233323b33742a323b341a3d373b333674393537">[email&#160;protected]</span></a>
+  </div>
+</section>
+
+<!-- PARTENAIRE -->
+<section style="padding: 3vw 6vw; border-top: 1px solid #e8e6e0; text-align: center;">
+  <p style="font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: #bbb; margin-bottom: 1.2rem;">Impression & encadrement</p>
+  <p style="font-size: 0.82rem; color: #555550; line-height: 1.8; max-width: 520px; margin: 0 auto;">
+    Les tirages Fine Art et les caisses américaines de cette exposition ont été réalisés par 
+    <a href="https://apc-viaud.com" target="_blank" style="color: #111111; text-decoration: underline; text-underline-offset: 3px;">APC Viaud</a> — 
+    agence photo, impression et encadrement à Bordeaux, depuis 1984. 
+    Une entreprise familiale, un savoir-faire local, une qualité galerie.
+  </p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Phi-Haï Phan — Tous droits réservés</span>
+  <span>Parenthèse Urbaine · Série photographique</span>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="mlabel">Demande d'acquisition</div>
+    <h4 id="modalTitle"></h4>
+    <div class="mprice" id="modalPrice"></div>
+    <input type="text" placeholder="Votre nom" id="modalName">
+    <input type="email" placeholder="Votre email" id="modalEmail">
+    <textarea placeholder="Un message (optionnel)…" id="modalMessage"></textarea>
+    <div class="modal-actions">
+      <button class="btn-send" onclick="sendInterest()">Envoyer ma demande</button>
+      <button class="btn-cancel" onclick="closeModal()">Annuler</button>
+    </div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕ Fermer</button>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  function openModal(title, price) {
+    document.getElementById('modalTitle').textContent = '« ' + title + ' »';
+    document.getElementById('modalPrice').textContent = price + '  ·  Édition limitée 7 exemplaires  ·  Signé & numéroté';
+    document.getElementById('modalOverlay').classList.add('active');
+  }
+  function closeModal() { document.getElementById('modalOverlay').classList.remove('active'); }
+  function sendInterest() {
+    closeModal();
+  }
+  function openLightbox(src) {
+    document.getElementById('lightboxImg').src = src;
+    document.getElementById('lightbox').classList.add('active');
+  }
+  function closeLightbox() { document.getElementById('lightbox').classList.remove('active'); }
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape'
