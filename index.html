@@ -67,8 +67,8 @@
 
     /* Hamburger — caché desktop */
     .site-header .header-right { display: none; justify-content: flex-end; }
-    .hamburger { display: flex; flex-direction: column; justify-content: center; gap: 5px; cursor: pointer; padding: 10px; background: none; border: 1px solid var(--noir); width: 44px; height: 44px; }
-    .hamburger span { display: block; width: 22px; height: 1px; background: var(--noir); }
+    .hamburger { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px; cursor: pointer; padding: 10px; background: none; border: 1px solid var(--noir); width: 44px; height: 44px; }
+    .hamburger span { display: block; width: 18px; height: 1px; background: var(--noir); }
 
     /* HERO */
 
@@ -180,19 +180,19 @@
       .site-header { grid-template-columns: 1fr auto 1fr; }
       .site-header nav { display: none; }
       .site-header .header-right { display: flex !important; }
-      .mobile-menu { display: none; position: fixed; inset: 0; background: var(--blanc); z-index: 500; flex-direction: column; align-items: center; justify-content: center; gap: 2.4rem; }
+      .mobile-menu { display: none; position: fixed; inset: 0; background: var(--blanc); z-index: 500; flex-direction: column; align-items: center; justify-content: center; gap: 2.4rem; overflow-y: auto; }
       .mobile-menu.active { display: flex; }
-      .mobile-menu a { font-size: 1.4rem; letter-spacing: 0.22em; text-transform: uppercase; text-decoration: none; color: var(--noir); font-family: 'Cormorant Garamond', serif; font-weight: 300; }
-      .mobile-menu .close-menu { position: absolute; top: 1rem; right: 1rem; font-size: 1.2rem; background: none; border: 1px solid var(--noir); cursor: pointer; color: var(--noir); font-family: 'Raleway', sans-serif; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; }
+      .mobile-menu > a { font-size: 1.4rem; letter-spacing: 0.22em; text-transform: uppercase; text-decoration: none; color: var(--noir); font-family: 'Cormorant Garamond', serif; font-weight: 300; }
+      .mobile-menu > a:hover { opacity: 0.6; }
+      .mobile-menu .close-menu { position: absolute; top: 1rem; right: 1rem; font-size: 1rem; background: none; border: 1px solid var(--noir); cursor: pointer; color: var(--noir); font-family: 'Raleway', sans-serif; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; letter-spacing: 0; }
       .mobile-logo { height: 48px; width: auto; margin-bottom: 1rem; }
       .mobile-menu-item { display: flex; flex-direction: column; align-items: center; }
-      .mobile-submenu-toggle { background: none; border: none; cursor: pointer; font-size: 1.4rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--noir); font-family: 'Cormorant Garamond', serif; font-weight: 300; display: flex; align-items: center; gap: 0.6rem; }
-      .mobile-submenu-toggle #portfolioArrow { display: inline-block; transition: transform 0.3s; font-style: normal; font-size: 1.2rem; }
-      .mobile-submenu-toggle.open #portfolioArrow { transform: rotate(90deg); }
-      .mobile-submenu { display: none; flex-direction: column; align-items: center; gap: 1.2rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--gris-leger); width: 100%; }
+      .mobile-submenu-toggle { background: none; border: none; cursor: pointer; font-size: 1.4rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--noir); font-family: 'Cormorant Garamond', serif; font-weight: 300; display: flex; align-items: center; gap: 0.6rem; padding: 0; }
+      .mobile-submenu-toggle .arrow { display: inline-block; transition: transform 0.3s; font-style: normal; font-size: 1rem; }
+      .mobile-submenu-toggle.open .arrow { transform: rotate(90deg); }
+      .mobile-submenu { display: none; flex-direction: column; align-items: center; gap: 1rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--gris-leger); width: 80%; }
       .mobile-submenu.active { display: flex; }
-      .mobile-submenu a { font-size: 0.75rem; letter-spacing: 0.28em; text-transform: uppercase; text-decoration: none; color: var(--gris); font-family: 'Raleway', sans-serif; font-weight: 300; }
-      .mobile-submenu a:hover { color: var(--noir); }
+      .mobile-submenu a { font-size: 0.72rem; letter-spacing: 0.28em; text-transform: uppercase; text-decoration: none; color: var(--gris); font-family: 'Raleway', sans-serif; font-weight: 300; }
       .hero { grid-template-columns: 1fr; min-height: auto; }
       .hero-img { aspect-ratio: 4/3; }
       .hero-text { padding: 2.4rem 6vw 3rem; justify-content: flex-start; }
@@ -245,8 +245,8 @@
   <img class="mobile-logo" src="https://images.squarespace-cdn.com/content/5c4ef2b55cfd797e18b902a9/3ec743bc-e2b7-4f80-8484-fcaeafc56907/Signature+Phi+Hai+Noir.png?content-type=image%2Fpng" alt="Phi-Haï Phan">
   <a href="https://unisens.art" onclick="closeMenu()">Accueil</a>
   <div class="mobile-menu-item">
-    <button class="mobile-submenu-toggle" onclick="togglePortfolio()">
-      Portfolio <span id="portfolioArrow">›</span>
+    <button class="mobile-submenu-toggle" id="portfolioToggle" onclick="togglePortfolio()">
+      Portfolio <span class="arrow">›</span>
     </button>
     <div class="mobile-submenu" id="portfolioSubmenu">
       <a href="https://unisens.art/mariagebordeaux" onclick="closeMenu()">L'Union</a>
@@ -482,8 +482,32 @@
     document.getElementById('modalOverlay').classList.add('active');
   }
   function closeModal() { document.getElementById('modalOverlay').classList.remove('active'); }
-  function sendInterest() {
-    closeModal();
-  }
+  function sendInterest() { closeModal(); }
+
   function openLightbox(src) {
-    document.getElementById('lightboxImg').src =
+    document.getElementById('lightboxImg').src = src;
+    document.getElementById('lightbox').classList.add('active');
+  }
+  function closeLightbox() { document.getElementById('lightbox').classList.remove('active'); }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { closeModal(); closeLightbox(); closeMenu(); }
+  });
+
+  function openMenu() {
+    document.getElementById('mobileMenu').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    document.getElementById('mobileMenu').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  function togglePortfolio() {
+    var submenu = document.getElementById('portfolioSubmenu');
+    var toggle = document.getElementById('portfolioToggle');
+    submenu.classList.toggle('active');
+    toggle.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
