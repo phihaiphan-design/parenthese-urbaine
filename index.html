@@ -200,9 +200,74 @@
       .oeuvre:nth-child(even) .oeuvre-img { order: 0; }
       .oeuvre:nth-child(even) .oeuvre-txt { order: 0; }
       .oeuvre-img { aspect-ratio: 4/3; }
-      .oeuvre-txt { padding: 2rem 5vw; }
+
+      /* Bloc œuvre mobile — compact et lisible */
+      .oeuvre-txt {
+        padding: 1.6rem 5vw 2rem;
+        gap: 0;
+      }
+      .oeuvre-num {
+        margin-bottom: 0.5rem;
+      }
+      .oeuvre-title {
+        margin-bottom: 0.5rem;
+        font-size: clamp(1.3rem, 5.5vw, 1.8rem);
+      }
+
+      /* Prix remonté juste sous le titre */
+      .oeuvre-price-mobile {
+        display: block;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1.3rem;
+        font-weight: 400;
+        margin-bottom: 0.3rem;
+      }
+      .oeuvre-edition-mobile {
+        display: block;
+        font-size: 0.58rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #bbb;
+        margin-bottom: 1rem;
+      }
+
+      .oeuvre-desc {
+        margin-bottom: 1rem;
+        font-size: 0.85rem;
+      }
+      .oeuvre-specs {
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--gris-tres-leger);
+      }
+
+      /* Footer mobile — bouton pleine largeur */
+      .oeuvre-footer {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+      }
+      .oeuvre-footer > div:first-child {
+        display: none; /* Prix masqué en bas, déjà affiché en haut */
+      }
+      .btn {
+        width: 100%;
+        text-align: center;
+        padding: 0.9rem 1.4rem;
+      }
+
+      /* Livraison info */
+      .livraison-info {
+        display: block;
+        font-size: 0.62rem;
+        color: #bbb;
+        letter-spacing: 0.1em;
+        text-align: center;
+        margin-top: 0.6rem;
+      }
+
       .oeuvre-full .oeuvre-img { aspect-ratio: 4/3; }
-      .oeuvre-full .oeuvre-txt { flex-direction: column; padding: 2rem 5vw; gap: 1rem; }
+      .oeuvre-full .oeuvre-txt { flex-direction: column; padding: 1.6rem 5vw 2rem; gap: 0; }
       .oeuvre-full .col-right { text-align: left; }
       .about { grid-template-columns: 1fr; }
       .about-img { aspect-ratio: 4/3; }
@@ -508,6 +573,41 @@
     submenu.classList.toggle('active');
     toggle.classList.toggle('open');
   }
+
+  // Mobile : remonte le prix sous le titre + ajoute info livraison
+  function enhanceMobile() {
+    if (window.innerWidth > 768) return;
+    document.querySelectorAll('.oeuvre-txt').forEach(function(txt) {
+      var title = txt.querySelector('.oeuvre-title');
+      var footer = txt.querySelector('.oeuvre-footer');
+      var priceEl = footer ? footer.querySelector('.oeuvre-price') : null;
+      var editionEl = footer ? footer.querySelector('.oeuvre-edition') : null;
+      var btn = footer ? footer.querySelector('.btn') : null;
+      if (title && priceEl && !txt.querySelector('.price-mobile-block')) {
+        var priceBlock = document.createElement('div');
+        priceBlock.className = 'price-mobile-block';
+        priceBlock.style.cssText = 'margin-bottom: 1rem;';
+        var priceSpan = document.createElement('div');
+        priceSpan.style.cssText = 'font-family: Cormorant Garamond, serif; font-size: 1.3rem; font-weight: 400; color: #111;';
+        priceSpan.textContent = priceEl.textContent;
+        var editionSpan = document.createElement('div');
+        editionSpan.style.cssText = 'font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: #bbb; margin-top: 0.2rem;';
+        editionSpan.textContent = editionEl ? editionEl.textContent : '';
+        priceBlock.appendChild(priceSpan);
+        priceBlock.appendChild(editionSpan);
+        title.insertAdjacentElement('afterend', priceBlock);
+      }
+      if (btn && !btn.parentElement.querySelector('.livraison-txt')) {
+        var livraison = document.createElement('span');
+        livraison.className = 'livraison-txt';
+        livraison.style.cssText = 'display: block; font-size: 0.6rem; color: #bbb; letter-spacing: 0.1em; text-align: center; margin-top: 0.5rem;';
+        livraison.textContent = 'Livraison possible en France et Europe';
+        btn.insertAdjacentElement('afterend', livraison);
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded', enhanceMobile);
+  window.addEventListener('resize', enhanceMobile);
 </script>
 </body>
 </html>
