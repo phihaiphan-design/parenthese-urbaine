@@ -274,6 +274,65 @@
       .about-img { aspect-ratio: 4/3; }
     }
   </style>
+
+<style>
+/* --- Gallery Enhancements --- */
+
+.oeuvre{
+opacity:0;
+transform:translateY(40px);
+transition:all 0.8s ease;
+}
+
+.oeuvre.visible{
+opacity:1;
+transform:translateY(0);
+}
+
+/* Hover zoom for artwork */
+.oeuvre-img img{
+transition:transform 1.2s ease, filter .6s ease;
+}
+
+.oeuvre-img:hover img{
+transform:scale(1.05);
+filter:brightness(.85);
+}
+
+/* Clearer price hierarchy */
+.oeuvre-price{
+font-family:'Cormorant Garamond', serif;
+font-size:1.7rem;
+margin-bottom:4px;
+}
+
+.oeuvre-edition{
+font-size:0.65rem;
+letter-spacing:.22em;
+text-transform:uppercase;
+color:#9a9a9a;
+margin-bottom:12px;
+}
+
+/* Reserved badge */
+.reserved-badge{
+color:#9a7a5a;
+font-weight:500;
+letter-spacing:.12em;
+}
+
+/* Smooth section spacing */
+section{
+margin-bottom:80px;
+}
+
+/* Gallery hover cursor */
+.oeuvre-img{
+cursor:zoom-in;
+}
+
+</style>
+
 </head>
 <body>
 
@@ -362,7 +421,7 @@
       <p class="oeuvre-desc">Un tunnel qui aspire vers l'inconnu — on ne comprend le passage qu'en le vivant. Image d'ouverture, invitation à entrer dans l'expérience sans savoir ce qui attend de l'autre côté.</p>
       <div class="oeuvre-specs">Impression Fine Art Rag · Caisse américaine bois noir<br>Grand format · 75 × 50 cm</div>
       <div class="oeuvre-footer">
-        <div><div class="oeuvre-price">750 €</div><div class="oeuvre-edition">Édition 2/7 — 6 disponibles</div></div>
+        <div><div class="oeuvre-price">750 €</div><div class="oeuvre-edition">Édition 2/7 — 5 disponibles</div></div>
         <a href="https://wa.me/33627710560?text=Bonjour%20Phi-Ha%C3%AF%2C%20je%20suis%20int%C3%A9ress%C3%A9%28e%29%20par%20l%27%C5%93uvre%20%C2%AB%20Travers%C3%A9e%20%C2%BB%20%28750%20%E2%82%AC%2C%20%C3%A9dition%20limit%C3%A9e%207%20ex.%29.%20Pouvez-vous%20me%20donner%20plus%20d%27informations%20%3F" class="btn" target="_blank">Acquérir</a>
       </div>
     </div>
@@ -379,7 +438,7 @@
       <p class="oeuvre-desc">Les vitres superposent les mondes. Lumières diffuses, silhouettes fantômes, couleurs qui saignent dans le noir. Une présence mélancolique — là sans vraiment y être, dedans sans vraiment être dehors. Une rêverie urbaine dont on ne sait pas si elle appartient au présent ou au souvenir.</p>
       <div class="oeuvre-specs">Impression Fine Art Rag · Caisse américaine bois noir<br>Format 50 × 33 cm</div>
       <div class="oeuvre-footer">
-        <div><div class="oeuvre-price">490 €</div><div class="oeuvre-edition">Édition 2/7 — 6 disponibles</div></div>
+        <div><div class="oeuvre-price">490 €</div><div class="oeuvre-edition">Édition 2/7 — 5 disponibles</div></div>
         <a href="https://wa.me/33627710560?text=Bonjour%20Phi-Ha%C3%AF%2C%20je%20suis%20int%C3%A9ress%C3%A9%28e%29%20par%20l%27%C5%93uvre%20%C2%AB%20Reflets%20d%27ailleurs%20%C2%BB%20%28490%20%E2%82%AC%2C%20%C3%A9dition%20limit%C3%A9e%207%20ex.%29.%20Pouvez-vous%20me%20donner%20plus%20d%27informations%20%3F" class="btn" target="_blank">Acquérir</a>
       </div>
     </div>
@@ -396,7 +455,7 @@
       <p class="oeuvre-desc">La femme rousse floue, déjà partie. La vie entière qui résiste à être contrôlée. On essaie de saisir, mais la vie continue d'avancer malgré nous. Elle fait diptyque avec Reflets d'ailleurs — lui qui reste, elle qui s'échappe.</p>
       <div class="oeuvre-specs">Impression Fine Art Rag · Caisse américaine bois noir<br>Format 50 × 33 cm</div>
       <div class="oeuvre-footer">
-        <div><div class="oeuvre-price">490 €</div><div class="oeuvre-edition">Édition 2/7 — 6 disponibles</div></div>
+        <div><div class="oeuvre-price">490 €</div><div class="oeuvre-edition">Édition 2/7 — 5 disponibles</div></div>
         <a href="https://wa.me/33627710560?text=Bonjour%20Phi-Ha%C3%AF%2C%20je%20suis%20int%C3%A9ress%C3%A9%28e%29%20par%20l%27%C5%93uvre%20%C2%AB%20L%27insaisissable%20%C2%BB%20%28490%20%E2%82%AC%2C%20%C3%A9dition%20limit%C3%A9e%207%20ex.%29.%20Pouvez-vous%20me%20donner%20plus%20d%27informations%20%3F" class="btn" target="_blank">Acquérir</a>
       </div>
     </div>
@@ -413,7 +472,7 @@
       <p class="oeuvre-desc">Silhouette encapuchonnée de dos, Londres. On ne sait pas si elle arrive ou si elle fuit. L'errance non pas comme un échec mais comme partie du voyage — ne pas savoir où on va, c'est aussi une forme de liberté.</p>
       <div class="oeuvre-specs">Impression Fine Art Rag · Caisse américaine bois noir<br>Format 50 × 33 cm</div>
       <div class="oeuvre-footer">
-        <div><div class="oeuvre-price">490 €</div><div class="oeuvre-edition">Édition 2/7 — 6 disponibles</div></div>
+        <div><div class="oeuvre-price">490 €</div><div class="oeuvre-edition">Édition 2/7 — 5 disponibles</div></div>
         <a href="https://wa.me/33627710560?text=Bonjour%20Phi-Ha%C3%AF%2C%20je%20suis%20int%C3%A9ress%C3%A9%28e%29%20par%20l%27%C5%93uvre%20%C2%AB%20Sans%20destination%20%C2%BB%20%28490%20%E2%82%AC%2C%20%C3%A9dition%20limit%C3%A9e%207%20ex.%29.%20Pouvez-vous%20me%20donner%20plus%20d%27informations%20%3F" class="btn" target="_blank">Acquérir</a>
       </div>
     </div>
@@ -430,7 +489,7 @@
       <p class="oeuvre-desc">Un couple enlacé dans la fenêtre du train en mouvement. Le temps s'arrête juste pour eux, figé dans la vitesse. Une bulle d'intimité suspendue au milieu du flux — universelle et mélancolique.</p>
       <div class="oeuvre-specs">Impression Fine Art Rag · Caisse américaine bois noir<br>Grand format · 75 × 50 cm</div>
       <div class="oeuvre-footer">
-        <div><div class="oeuvre-price">750 €</div><div class="oeuvre-edition">Édition 2/7 — 6 disponibles</div></div>
+        <div><div class="oeuvre-price">750 €</div><div class="oeuvre-edition">Édition 2/7 — 5 disponibles</div></div>
         <a href="https://wa.me/33627710560?text=Bonjour%20Phi-Ha%C3%AF%2C%20je%20suis%20int%C3%A9ress%C3%A9%28e%29%20par%20l%27%C5%93uvre%20%C2%AB%20L%27%C3%A9treinte%20suspendue%20%C2%BB%20%28750%20%E2%82%AC%2C%20%C3%A9dition%20limit%C3%A9e%207%20ex.%29.%20Pouvez-vous%20me%20donner%20plus%20d%27informations%20%3F" class="btn" target="_blank">Acquérir</a>
       </div>
     </div>
@@ -447,7 +506,7 @@
       <p class="oeuvre-desc">Seule nette dans le chaos. Image prise dans l'urgence, deux secondes pour régler l'appareil. Le hasard parfait. Elle rayonne sans le savoir, souveraine, dans sa bulle musicale.</p>
       <div class="oeuvre-specs">Impression Fine Art Rag · Caisse américaine bois noir<br>Format 50 × 33 cm</div>
       <div class="oeuvre-footer">
-        <div><div class="oeuvre-price">490 €</div><div class="oeuvre-edition reserved-badge">Édition 3/7 — Réservée &middot; 5 disponibles</div></div>
+        <div><div class="oeuvre-price">490 €</div><div class="oeuvre-edition reserved-badge">Édition 2/7 — Réservée &middot; 5 disponibles</div></div>
         <a href="https://wa.me/33627710560?text=Bonjour%20Phi-Ha%C3%AF%2C%20je%20suis%20int%C3%A9ress%C3%A9%28e%29%20par%20l%27%C5%93uvre%20%C2%AB%20Gr%C3%A2ce%20%C2%BB%20%28490%20%E2%82%AC%2C%20%C3%A9dition%20limit%C3%A9e%207%20ex.%29.%20Pouvez-vous%20me%20donner%20plus%20d%27informations%20%3F" class="btn" target="_blank">Acquérir</a>
       </div>
     </div>
@@ -464,7 +523,7 @@
       <p class="oeuvre-desc">L'homme masqué, époque Covid. Les barreaux en premier plan évoquent la prison. L'aliénation ordinaire, le monde mécanique qui nous enferme sans qu'on s'en rende compte.</p>
       <div class="oeuvre-specs">Impression Fine Art Rag · Caisse américaine bois noir<br>Format 50 × 33 cm</div>
       <div class="oeuvre-footer">
-        <div><div class="oeuvre-price">490 €</div><div class="oeuvre-edition">Édition 2/7 — 6 disponibles</div></div>
+        <div><div class="oeuvre-price">490 €</div><div class="oeuvre-edition">Édition 2/7 — 5 disponibles</div></div>
         <a href="https://wa.me/33627710560?text=Bonjour%20Phi-Ha%C3%AF%2C%20je%20suis%20int%C3%A9ress%C3%A9%28e%29%20par%20l%27%C5%93uvre%20%C2%AB%20Les%20barreaux%20invisibles%20%C2%BB%20%28490%20%E2%82%AC%2C%20%C3%A9dition%20limit%C3%A9e%207%20ex.%29.%20Pouvez-vous%20me%20donner%20plus%20d%27informations%20%3F" class="btn" target="_blank">Acquérir</a>
       </div>
     </div>
@@ -610,5 +669,26 @@
   document.addEventListener('DOMContentLoaded', enhanceMobile);
   window.addEventListener('resize', enhanceMobile);
 </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+const oeuvres = document.querySelectorAll(".oeuvre");
+
+function reveal(){
+    oeuvres.forEach(el=>{
+        const rect = el.getBoundingClientRect();
+        if(rect.top < window.innerHeight - 120){
+            el.classList.add("visible");
+        }
+    });
+}
+
+window.addEventListener("scroll", reveal);
+reveal();
+
+});
+</script>
+
 </body>
 </html>
