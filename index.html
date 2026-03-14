@@ -89,6 +89,7 @@
 
     /* COLLECTION */
     .collection { padding: 0 5vw 8vw; }
+    .collection .oeuvre:first-child { margin-top: 1rem; }
     .collection-header { padding: 4rem 0 3rem; display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid var(--gris-leger); }
     .collection-header h2 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(1.4rem, 2.5vw, 2rem); }
     .collection-header span { font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gris); }
@@ -195,10 +196,57 @@
     /* Bloc prix natif — desktop caché (déjà dans footer) */
     .oeuvre-price-block { display: none; }
 
+    /* SOMMAIRE NAV — styles globaux desktop + mobile */
+    .oeuvre-nav {
+      display: flex;
+      align-items: center;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      background: var(--blanc);
+      border-top: 1px solid var(--gris-leger);
+      border-bottom: 1px solid var(--gris-leger);
+      padding: 0 5vw;
+      margin-bottom: 2.5rem;
+    }
+    .oeuvre-nav::-webkit-scrollbar { display: none; }
+    .oeuvre-nav a,
+    .oeuvre-nav a:link,
+    .oeuvre-nav a:visited {
+      flex-shrink: 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      font-weight: 400;
+      font-style: italic;
+      letter-spacing: 0.02em;
+      text-decoration: none !important;
+      color: #bbb !important;
+      padding: 1rem 0;
+      border-bottom: 1px solid transparent;
+      transition: color 0.25s, border-color 0.25s;
+      white-space: nowrap;
+    }
+    .oeuvre-nav a:hover,
+    .oeuvre-nav a:active,
+    .oeuvre-nav a.active {
+      color: var(--noir) !important;
+      text-decoration: none !important;
+      border-bottom-color: var(--noir);
+    }
+    .oeuvre-nav a.reserved,
+    .oeuvre-nav a.reserved:link,
+    .oeuvre-nav a.reserved:visited { color: #c4a882 !important; }
+    .oeuvre-nav a.reserved.active,
+    .oeuvre-nav a.reserved:hover { color: #9a7a5a !important; border-bottom-color: #9a7a5a; }
+    .oeuvre-nav-sep {
+      flex-shrink: 0;
+      color: var(--gris-leger);
+      font-size: 0.7rem;
+      padding: 0 0.7rem;
+      user-select: none;
+    }
+
     @media (max-width: 768px) {
-      .oeuvre-nav a, .oeuvre-nav a:link, .oeuvre-nav a:visited, .oeuvre-nav a:hover, .oeuvre-nav a:active { color: #bbb; text-decoration: none; -webkit-text-decoration: none; }
-      .oeuvre-nav a.active, .oeuvre-nav a:hover { color: #111 !important; }
-      .oeuvre-nav a.reserved { color: #c4a882 !important; }
       .site-header { grid-template-columns: 1fr auto 1fr; }
       .site-header nav { display: none; }
       .site-header .header-right { display: flex !important; }
