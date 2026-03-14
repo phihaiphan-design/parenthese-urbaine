@@ -177,21 +177,28 @@
         /* Cacher le menu mobile sur desktop */
     .mobile-menu { display: none; }
 
-    /* Animation scroll */
-    .oeuvre {
-      opacity: 0;
-      transform: translateY(32px);
-      transition: opacity 0.75s ease, transform 0.75s ease;
-    }
-    .oeuvre.visible {
-      opacity: 1;
-      transform: translateY(0);
+
+
+    /* Animation scroll — desktop uniquement */
+    @media (min-width: 769px) {
+      .oeuvre {
+        opacity: 0;
+        transform: translateY(28px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+      }
+      .oeuvre.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* Bloc prix natif — desktop caché (déjà dans footer) */
     .oeuvre-price-block { display: none; }
 
     @media (max-width: 768px) {
+      .oeuvre-nav a, .oeuvre-nav a:link, .oeuvre-nav a:visited, .oeuvre-nav a:hover, .oeuvre-nav a:active { color: #bbb; text-decoration: none; -webkit-text-decoration: none; }
+      .oeuvre-nav a.active, .oeuvre-nav a:hover { color: #111 !important; }
+      .oeuvre-nav a.reserved { color: #c4a882 !important; }
       .site-header { grid-template-columns: 1fr auto 1fr; }
       .site-header nav { display: none; }
       .site-header .header-right { display: flex !important; }
@@ -215,6 +222,8 @@
       .hero-text { padding: 2.4rem 6vw 3rem; justify-content: flex-start; }
 
       /* OEUVRE mobile */
+      .oeuvre:first-of-type { margin-top: 0; }
+      #traversee { scroll-margin-top: 1rem; }
       .oeuvre { grid-template-columns: 1fr; }
       .oeuvre:nth-child(even) .oeuvre-img { order: 0; }
       .oeuvre:nth-child(even) .oeuvre-txt { order: 0; }
@@ -629,42 +638,60 @@
   }
 
 
-  // Sommaire mobile — highlight ancre active
-  function updateNavActive() {
-    if (window.innerWidth > 768) return;
-    var links = document.querySelectorAll('.oeuvre-nav a');
-    var oeuvres = ['traversee','reflets','insaisissable','sans-destination','etreinte','grace','barreaux'];
-    var current = '';
-    oeuvres.forEach(function(id) {
-      var el = document.getElementById(id);
-      if (el) {
-        var rect = el.getBoundingClientRect();
-        if (rect.top <= window.innerHeight / 2) current = id;
-      }
-    });
-    links.forEach(function(a) {
-      a.classList.remove('active');
-      if (a.getAttribute('href') === '#' + current) {
-        a.classList.add('active');
-        // scroll l'onglet actif dans la vue
-        a.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-      }
-    });
-  }
-  window.addEventListener('scroll', updateNavActive);
-  document.addEventListener('DOMContentLoaded', updateNavActive);
-
-  // Scroll reveal
+  // ── Scroll reveal — desktop uniquement, jamais sur mobile ──
   function revealOeuvres() {
+    if (window.innerWidth <= 768) return; // mobile : toujours visible
     document.querySelectorAll('.oeuvre').forEach(function(el) {
       var rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight - 100) {
+      if (rect.top < window.innerHeight - 80) {
         el.classList.add('visible');
       }
     });
   }
-  document.addEventListener('DOMContentLoaded', revealOeuvres);
+
+  // ── Init reveal au chargement ──
+  document.addEventListener('DOMContentLoaded', function() {
+    if (window.innerWidth <= 768) {
+      // Mobile : rendre toutes les oeuvres visibles immédiatement
+      document.querySelectorAll('.oeuvre').forEach(function(el) {
+        el.classList.add('visible');
+      });
+    } else {
+      revealOeuvres();
+    }
+  });
   window.addEventListener('scroll', revealOeuvres);
+  window.addEventListener('resize', function() {
+    if (window.innerWidth <= 768) {
+      document.querySelectorAll('.oeuvre').forEach(function(el) {
+        el.classList.add('visible');
+      });
+    }
+  });
+
+  // ── Sommaire mobile — highlight ancre active (sans scrollIntoView pour éviter conflits) ──
+  var navUpdateTimer = null;
+  function updateNavActive() {
+    if (window.innerWidth > 768) return;
+    clearTimeout(navUpdateTimer);
+    navUpdateTimer = setTimeout(function() {
+      var links = document.querySelectorAll('.oeuvre-nav a');
+      var ids = ['traversee','reflets','insaisissable','sans-destination','etreinte','grace','barreaux'];
+      var current = '';
+      ids.forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= window.innerHeight * 0.6) {
+          current = id;
+        }
+      });
+      links.forEach(function(a) {
+        var isActive = a.getAttribute('href') === '#' + current;
+        a.classList.toggle('active', isActive);
+      });
+    }, 50);
+  }
+  window.addEventListener('scroll', updateNavActive, { passive: true });
+  document.addEventListener('DOMContentLoaded', updateNavActive);
 </script>
 </body>
 </html>
