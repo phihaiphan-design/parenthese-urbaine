@@ -180,15 +180,21 @@
 
 
 
-    /* Animation scroll — desktop uniquement */
+    /* Animation scroll — fondu simple global */
+    .oeuvre {
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    .oeuvre.visible {
+      opacity: 1;
+    }
+    /* Desktop : fondu + remontée */
     @media (min-width: 769px) {
       .oeuvre {
-        opacity: 0;
         transform: translateY(28px);
         transition: opacity 0.7s ease, transform 0.7s ease;
       }
       .oeuvre.visible {
-        opacity: 1;
         transform: translateY(0);
       }
     }
@@ -686,34 +692,29 @@
   }
 
 
-  // ── Scroll reveal — desktop uniquement, jamais sur mobile ──
-  function revealOeuvres() {
-    if (window.innerWidth <= 768) return; // mobile : toujours visible
-    document.querySelectorAll('.oeuvre').forEach(function(el) {
-      var rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight - 80) {
-        el.classList.add('visible');
-      }
-    });
-  }
-
-  // ── Init reveal au chargement ──
+  // ── Scroll reveal — IntersectionObserver (fiable mobile + desktop) ──
   document.addEventListener('DOMContentLoaded', function() {
-    if (window.innerWidth <= 768) {
-      // Mobile : rendre toutes les oeuvres visibles immédiatement
-      document.querySelectorAll('.oeuvre').forEach(function(el) {
-        el.classList.add('visible');
+    var oeuvres = document.querySelectorAll('.oeuvre');
+
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target); // une seule fois suffit
+          }
+        });
+      }, {
+        threshold: 0.08, // déclenche dès que 8% de l'oeuvre est visible
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      oeuvres.forEach(function(el) {
+        observer.observe(el);
       });
     } else {
-      revealOeuvres();
-    }
-  });
-  window.addEventListener('scroll', revealOeuvres);
-  window.addEventListener('resize', function() {
-    if (window.innerWidth <= 768) {
-      document.querySelectorAll('.oeuvre').forEach(function(el) {
-        el.classList.add('visible');
-      });
+      // Fallback navigateurs anciens : tout visible immédiatement
+      oeuvres.forEach(function(el) { el.classList.add('visible'); });
     }
   });
 
