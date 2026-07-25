@@ -9,7 +9,7 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --blanc: #ffffff;
+      --blanc: #f6f3ee;
       --fond: #f9f8f6;
       --noir: #111111;
       --gris: #555550;
@@ -17,7 +17,7 @@
       --gris-tres-leger: #f2f0ec;
     }
     html { scroll-behavior: smooth; }
-    body { background: var(--blanc); color: var(--noir); font-family: 'Raleway', sans-serif; font-weight: 300; overflow-x: hidden; }
+    body { background: var(--fond); color: var(--noir); font-family: 'Raleway', sans-serif; font-weight: 300; overflow-x: hidden; }
 
     /* HEADER */
     .site-header { padding: 1.4rem 6vw; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; border-bottom: 1px solid var(--gris-leger); }
@@ -76,7 +76,7 @@
     .hero-img { position: relative; overflow: hidden; }
     .hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s ease; }
     .hero-img:hover img { transform: scale(1.03); }
-    .hero-text { display: flex; flex-direction: column; justify-content: flex-end; padding: 5vw 6vw 6vw; background: var(--blanc); }
+    .hero-text { display:flex;flex-direction:column;justify-content:flex-end;padding:5vw 6vw 6vw;background:var(--fond); }
     .hero-label { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gris); margin-bottom: 1.6rem; }
     .hero-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(2.8rem, 5vw, 5.5rem); line-height: 1.02; margin-bottom: 1.4rem; }
     .hero-quote { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(1rem, 1.5vw, 1.2rem); color: var(--gris); line-height: 1.75; margin-bottom: 2.4rem; max-width: 380px; }
@@ -342,31 +342,18 @@
 <body>
 
 <!-- HEADER -->
-<header class="site-header">
-  <nav>
-    <a href="https://unisens.art">Accueil</a>
-    <div class="dropdown" id="dropPortfolio">
-      <button class="dropdown-btn">Portfolio</button>
-      <div class="dropdown-menu" id="dropPortfolioMenu">
-        <div class="dropdown-menu-inner">
-          <a href="https://unisens.art/mariagebordeaux">L'Union</a>
-          <a href="https://unisens.art/leregard">Le Regard</a>
-          <a href="https://unisens.art/parenthese-urbaine">Parenthèse Urbaine</a>
-        </div>
-      </div>
-    </div>
-    <a href="https://unisens.art/lademarche">La Démarche</a>
-    <a href="https://unisens.art/leursmots">Leurs Mots</a>
-    <a href="https://unisens.art/rencontrons-nous">Rencontrons-nous</a>
-  </nav>
-  <a href="https://unisens.art" class="logo">
-    <img src="https://images.squarespace-cdn.com/content/5c4ef2b55cfd797e18b902a9/3ec743bc-e2b7-4f80-8484-fcaeafc56907/Signature+Phi+Hai+Noir.png?content-type=image%2Fpng" alt="Phi-Haï Phan">
-  </a>
-  <div class="header-right">
-    <button class="hamburger" onclick="openMenu()" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
+<header class="site-header" style="background:#f6f3ee;position:sticky;top:0;z-index:1000;">
+<nav>
+<a href="https://presenceintemporelle.fr">La Maison</a>
+<a href="https://presenceintemporelle.fr/les-presences">Les Présences</a>
+<a href="https://presenceintemporelle.fr/les-portes">Les Portes</a>
+</nav>
+<a href="https://presenceintemporelle.fr" class="logo">
+<img src="https://images.squarespace-cdn.com/content/5c4ef2b55cfd797e18b902a9/3ec743bc-e2b7-4f80-8484-fcaeafc56907/Signature+Phi+Hai+Noir.png?content-type=image%2Fpng" alt="Présence Intemporelle">
+</a>
+<div class="header-right">
+<button class="hamburger" onclick="openMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+</div>
 </header>
 
 <!-- MENU MOBILE -->
@@ -396,9 +383,9 @@
   </div>
   <div class="hero-text">
     <p class="hero-label">Série photographique · Bordeaux 2026</p>
-    <h1 class="hero-title">Parenthèse<br>Urbaine</h1>
+    <h1 class="hero-title">Parenthèse<br>Urbaine<br><span style='font-size:.35em;letter-spacing:.15em;text-transform:uppercase;color:#777;'>Une porte de Présence Intemporelle</span></h1>
     <p class="hero-quote">Ce qui passe a existé.</p>
-    <p class="hero-meta">Paris · Londres<br>Éditions limitées — 7 exemplaires par œuvre</p>
+    <p class="hero-meta">Paris · Londres · Lisbonne · Los Angeles · Mexico<br><strong>Exposition en cours · Café Rostand — Le Haillan</strong><br>Éditions limitées — 7 exemplaires par œuvre</p>
   </div>
 </section>
 
@@ -410,6 +397,22 @@
   <br>
   <p><em>Rien n'est permanent. C'est peut-être pour ça que ça compte.</em></p>
   <br><div class="divider"></div>
+</section>
+
+
+<section style="padding:5rem 6vw;background:#faf9f7;border-top:1px solid #e8e6e0;border-bottom:1px solid #e8e6e0;">
+<div style="max-width:1100px;margin:auto;">
+<p style="text-align:center;font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:#999;">Exposition en cours</p>
+<h2 style="text-align:center;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:3rem;margin:.5rem 0 1rem;">Café Rostand · Le Haillan</h2>
+<p style="max-width:760px;margin:0 auto 2.5rem;text-align:center;color:#555550;line-height:1.9;">
+Les sept œuvres de <em>Parenthèse Urbaine</em> sont actuellement exposées au Café Rostand.
+Les tirages visibles sont les exemplaires d'exposition. Toute acquisition donne lieu à un nouveau tirage Fine Art signé, numéroté et réalisé spécialement pour son collectionneur.
+</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem;">
+<img src="https://images.squarespace-cdn.com/content/5c4ef2b55cfd797e18b902a9/d5ca7851-e6ee-4198-a297-534c4dfbe6fa/IMG_7607.JPG?content-type=image%2Fjpeg" style="width:100%;display:block;">
+<img src="https://images.squarespace-cdn.com/content/5c4ef2b55cfd797e18b902a9/a93494a8-fe8e-4bdf-8c87-686c3e2108d7/IMG_7609.JPG?content-type=image%2Fjpeg" style="width:100%;display:block;">
+</div>
+</div>
 </section>
 
 <!-- COLLECTION -->
@@ -449,10 +452,10 @@
         <div class="oeuvre-edition">Édition 2/7 — 6 disponibles</div>
       </div>
       <p class="oeuvre-desc">Un tunnel qui aspire vers l'inconnu — on ne comprend le passage qu'en le vivant. Image d'ouverture, invitation à entrer dans l'expérience sans savoir ce qui attend de l'autre côté.</p>
-      <div class="oeuvre-specs">Impression Fine Art Rag · Caisse américaine bois noir<br>Grand format · 75 × 50 cm</div>
+      <div class="oeuvre-specs">Impression Fine Art Rag · Caisse américaine bois noir<br>Grand format · 75 × 50 cm</div><p style="font-size:.68rem;color:#888;line-height:1.7;margin-bottom:1.4rem;">Les œuvres exposées sont les exemplaires de présentation. Votre acquisition donne lieu à un nouveau tirage Fine Art signé et numéroté.</p>
       <div class="oeuvre-footer">
         <div><div class="oeuvre-price">750 €</div><div class="oeuvre-edition">Édition 2/7 — 6 disponibles</div></div>
-        <a href="https://wa.me/33627710560?text=Bonjour%20Phi-Ha%C3%AF%2C%20je%20suis%20int%C3%A9ress%C3%A9%28e%29%20par%20l%27%C5%93uvre%20%C2%AB%20Travers%C3%A9e%20%C2%BB%20%28750%20%E2%82%AC%2C%20%C3%A9dition%20limit%C3%A9e%207%20ex.%29.%20Pouvez-vous%20me%20donner%20plus%20d%27informations%20%3F" class="btn" target="_blank">Acquérir</a>
+        <a href="https://wa.me/33627710560?text=Bonjour%20Phi-Ha%C3%AF%2C%20je%20suis%20int%C3%A9ress%C3%A9%28e%29%20par%20l%27%C5%93uvre%20%C2%AB%20Travers%C3%A9e%20%C2%BB%20%28750%20%E2%82%AC%2C%20%C3%A9dition%20limit%C3%A9e%207%20ex.%29.%20Pouvez-vous%20me%20donner%20plus%20d%27informations%20%3F" class="btn" target="_blank">Échanger avec l'artiste</a>
         <span class="livraison-txt">Livraison possible en France et Europe</span>
       </div>
     </div>
@@ -471,10 +474,10 @@
         <div class="oeuvre-edition">Édition 2/7 — 6 disponibles</div>
       </div>
       <p class="oeuvre-desc">Les vitres superposent les mondes. Lumières diffuses, silhouettes fantômes, couleurs qui saignent dans le noir. Une présence mélancolique — là sans vraiment y être, dedans sans vraiment être dehors. Une rêverie urbaine dont on ne sait pas si elle appartient au présent ou au souvenir.</p>
-      <div class="oeuvre-specs">Impression Fine Art Rag · Caisse américaine bois noir<br>Format 50 × 33 cm</div>
+      <div class="oeuvre-specs">Impression Fine Art Rag · Caisse américaine bois noir<br>Format 50 × 33 cm</div><p style="font-size:.68rem;color:#888;line-height:1.7;margin-bottom:1.4rem;">Les œuvres exposées sont les exemplaires de présentation. Votre acquisition donne lieu à un nouveau tirage Fine Art signé et numéroté.</p>
       <div class="oeuvre-footer">
         <div><div class="oeuvre-price">490 €</div><div class="oeuvre-edition">Édition 2/7 — 6 disponibles</div></div>
-        <a href="https://wa.me/33627710560?text=Bonjour%20Phi-Ha%C3%AF%2C%20je%20suis%20int%C3%A9ress%C3%A9%28e%29%20par%20l%27%C5%93uvre%20%C2%AB%20Reflets%20d%27ailleurs%20%C2%BB%20%28490%20%E2%82%AC%2C%20%C3%A9dition%20limit%C3%A9e%207%20ex.%29.%20Pouvez-vous%20me%20donner%20plus%20d%27informations%20%3F" class="btn" target="_blank">Acquérir</a>
+        <a href="https://wa.me/33627710560?text=Bonjour%20Phi-Ha%C3%AF%2C%20je%20suis%20int%C3%A9ress%C3%A9%28e%29%20par%20l%27%C5%93uvre%20%C2%AB%20Reflets%20d%27ailleurs%20%C2%BB%20%28490%20%E2%82%AC%2C%20%C3%A9dition%20limit%C3%A9e%207%20ex.%29.%20Pouvez-vous%20me%20donner%20plus%20d%27informations%20%3F" class="btn" target="_blank">Échanger avec l'artiste</a>
         <span class="livraison-txt">Livraison possible en France et Europe</span>
       </div>
     </div>
@@ -493,10 +496,10 @@
         <div class="oeuvre-edition">Édition 2/7 — 6 disponibles</div>
       </div>
       <p class="oeuvre-desc">La femme rousse floue, déjà partie. La vie entière qui résiste à être contrôlée. On essaie de saisir, mais la vie continue d'avancer malgré nous. Elle fait diptyque avec Reflets d'ailleurs — lui qui reste, elle qui s'échappe.</p>
-      <div class="oeuvre-specs">Impression Fine Art Rag · Caisse américaine bois noir<br>Format 50 × 33 cm</div>
+      <div class="oeuvre-specs">Impression Fine Art Rag · Caisse américaine bois noir<br>Format 50 × 33 cm</div><p style="font-size:.68rem;color:#888;line-height:1.7;margin-bottom:1.4rem;">Les œuvres exposées sont les exemplaires de présentation. Votre acquisition donne lieu à un nouveau tirage Fine Art signé et numéroté.</p>
       <div class="oeuvre-footer">
         <div><div class="oeuvre-price">490 €</div><div class="oeuvre-edition">Édition 2/7 — 6 disponibles</div></div>
-        <a href="https://wa.me/33627710560?text=Bonjour%20Phi-Ha%C3%AF%2C%20je%20suis%20int%C3%A9ress%C3%A9%28e%29%20par%20l%27%C5%93uvre%20%C2%AB%20L%27insaisissable%20%C2%BB%20%28490%20%E2%82%AC%2C%20%C3%A9dition%20limit%C3%A9e%207%20ex.%29.%20Pouvez-vous%20me%20donner%20plus%20d%27informations%20%3F" class="btn" target="_blank">Acquérir</a>
+        <a href="https://wa.me/33627710560?text=Bonjour%20Phi-Ha%C3%AF%2C%20je%20suis%20int%C3%A9ress%C3%A9%28e%29%20par%20l%27%C5%93uvre%20%C2%AB%20L%27insaisissable%20%C2%BB%20%28490%20%E2%82%AC%2C%20%C3%A9dition%20limit%C3%A9e%207%20ex.%29.%20Pouvez-vous%20me%20donner%20plus%20d%27informations%20%3F" class="btn" target="_blank">Échanger avec l'artiste</a>
         <span class="livraison-txt">Livraison possible en France et Europe</span>
       </div>
     </div>
@@ -515,10 +518,10 @@
         <div class="oeuvre-edition">Édition 2/7 — 6 disponibles</div>
       </div>
       <p class="oeuvre-desc">Silhouette encapuchonnée de dos, Londres. On ne sait pas si elle arrive ou si elle fuit. L'errance non pas comme un échec mais comme partie du voyage — ne pas savoir où on va, c'est aussi une forme de liberté.</p>
-      <div class="oeuvre-specs">Impression Fine Art Rag · Caisse américaine bois noir<br>Format 50 × 33 cm</div>
+      <div class="oeuvre-specs">Impression Fine Art Rag · Caisse américaine bois noir<br>Format 50 × 33 cm</div><p style="font-size:.68rem;color:#888;line-height:1.7;margin-bottom:1.4rem;">Les œuvres exposées sont les exemplaires de présentation. Votre acquisition donne lieu à un nouveau tirage Fine Art signé et numéroté.</p>
       <div class="oeuvre-footer">
         <div><div class="oeuvre-price">490 €</div><div class="oeuvre-edition">Édition 2/7 — 6 disponibles</div></div>
-        <a href="https://wa.me/33627710560?text=Bonjour%20Phi-Ha%C3%AF%2C%20je%20suis%20int%C3%A9ress%C3%A9%28e%29%20par%20l%27%C5%93uvre%20%C2%AB%20Sans%20destination%20%C2%BB%20%28490%20%E2%82%AC%2C%20%C3%A9dition%20limit%C3%A9e%207%20ex.%29.%20Pouvez-vous%20me%20donner%20plus%20d%27informations%20%3F" class="btn" target="_blank">Acquérir</a>
+        <a href="https://wa.me/33627710560?text=Bonjour%20Phi-Ha%C3%AF%2C%20je%20suis%20int%C3%A9ress%C3%A9%28e%29%20par%20l%27%C5%93uvre%20%C2%AB%20Sans%20destination%20%C2%BB%20%28490%20%E2%82%AC%2C%20%C3%A9dition%20limit%C3%A9e%207%20ex.%29.%20Pouvez-vous%20me%20donner%20plus%20d%27informations%20%3F" class="btn" target="_blank">Échanger avec l'artiste</a>
         <span class="livraison-txt">Livraison possible en France et Europe</span>
       </div>
     </div>
@@ -537,10 +540,10 @@
         <div class="oeuvre-edition">Édition 2/7 — 6 disponibles</div>
       </div>
       <p class="oeuvre-desc">Un couple enlacé dans la fenêtre du train en mouvement. Le temps s'arrête juste pour eux, figé dans la vitesse. Une bulle d'intimité suspendue au milieu du flux — universelle et mélancolique.</p>
-      <div class="oeuvre-specs">Impression Fine Art Rag · Caisse américaine bois noir<br>Grand format · 75 × 50 cm</div>
+      <div class="oeuvre-specs">Impression Fine Art Rag · Caisse américaine bois noir<br>Grand format · 75 × 50 cm</div><p style="font-size:.68rem;color:#888;line-height:1.7;margin-bottom:1.4rem;">Les œuvres exposées sont les exemplaires de présentation. Votre acquisition donne lieu à un nouveau tirage Fine Art signé et numéroté.</p>
       <div class="oeuvre-footer">
         <div><div class="oeuvre-price">750 €</div><div class="oeuvre-edition">Édition 2/7 — 6 disponibles</div></div>
-        <a href="https://wa.me/33627710560?text=Bonjour%20Phi-Ha%C3%AF%2C%20je%20suis%20int%C3%A9ress%C3%A9%28e%29%20par%20l%27%C5%93uvre%20%C2%AB%20L%27%C3%A9treinte%20suspendue%20%C2%BB%20%28750%20%E2%82%AC%2C%20%C3%A9dition%20limit%C3%A9e%207%20ex.%29.%20Pouvez-vous%20me%20donner%20plus%20d%27informations%20%3F" class="btn" target="_blank">Acquérir</a>
+        <a href="https://wa.me/33627710560?text=Bonjour%20Phi-Ha%C3%AF%2C%20je%20suis%20int%C3%A9ress%C3%A9%28e%29%20par%20l%27%C5%93uvre%20%C2%AB%20L%27%C3%A9treinte%20suspendue%20%C2%BB%20%28750%20%E2%82%AC%2C%20%C3%A9dition%20limit%C3%A9e%207%20ex.%29.%20Pouvez-vous%20me%20donner%20plus%20d%27informations%20%3F" class="btn" target="_blank">Échanger avec l'artiste</a>
         <span class="livraison-txt">Livraison possible en France et Europe</span>
       </div>
     </div>
@@ -556,13 +559,13 @@
       <div class="oeuvre-title">« Grâce »</div>
       <div class="oeuvre-price-block">
         <div class="oeuvre-price">490 €</div>
-        <div class="oeuvre-edition reserved-badge">Édition 2/7 — Réservée · 5 disponibles</div>
+        <div class="oeuvre-edition reserved-badge">Première œuvre acquise · 5 exemplaires disponibles</div>
       </div>
-      <p class="oeuvre-desc">Seule nette dans le chaos. Image prise dans l'urgence, deux secondes pour régler l'appareil. Le hasard parfait. Elle rayonne sans le savoir, souveraine, dans sa bulle musicale.</p>
-      <div class="oeuvre-specs">Impression Fine Art Rag · Caisse américaine bois noir<br>Format 50 × 33 cm</div>
+      <p class="oeuvre-desc">Première œuvre à avoir rejoint une collection privée. Cette photographie peut encore être réalisée dans la limite des exemplaires restants de son édition. Une image née de l'urgence, où le hasard s'est transformé en grâce.</p>
+      <div class="oeuvre-specs">Impression Fine Art Rag · Caisse américaine bois noir<br>Format 50 × 33 cm</div><p style="font-size:.68rem;color:#888;line-height:1.7;margin-bottom:1.4rem;">Les œuvres exposées sont les exemplaires de présentation. Votre acquisition donne lieu à un nouveau tirage Fine Art signé et numéroté.</p>
       <div class="oeuvre-footer">
-        <div><div class="oeuvre-price">490 €</div><div class="oeuvre-edition reserved-badge">Édition 2/7 — Réservée &middot; 5 disponibles</div></div>
-        <a href="https://wa.me/33627710560?text=Bonjour%20Phi-Ha%C3%AF%2C%20je%20suis%20int%C3%A9ress%C3%A9%28e%29%20par%20l%27%C5%93uvre%20%C2%AB%20Gr%C3%A2ce%20%C2%BB%20%28490%20%E2%82%AC%2C%20%C3%A9dition%20limit%C3%A9e%207%20ex.%29.%20Pouvez-vous%20me%20donner%20plus%20d%27informations%20%3F" class="btn" target="_blank">Acquérir</a>
+        <div><div class="oeuvre-price">490 €</div><div class="oeuvre-edition reserved-badge">Première œuvre acquise · 5 exemplaires disponibles</div></div>
+        <a href="https://wa.me/33627710560?text=Bonjour%20Phi-Ha%C3%AF%2C%20je%20suis%20int%C3%A9ress%C3%A9%28e%29%20par%20l%27%C5%93uvre%20%C2%AB%20Gr%C3%A2ce%20%C2%BB%20%28490%20%E2%82%AC%2C%20%C3%A9dition%20limit%C3%A9e%207%20ex.%29.%20Pouvez-vous%20me%20donner%20plus%20d%27informations%20%3F" class="btn" target="_blank">Échanger avec l'artiste</a>
         <span class="livraison-txt">Livraison possible en France et Europe</span>
       </div>
     </div>
@@ -581,10 +584,10 @@
         <div class="oeuvre-edition">Édition 2/7 — 6 disponibles</div>
       </div>
       <p class="oeuvre-desc">L'homme masqué, époque Covid. Les barreaux en premier plan évoquent la prison. L'aliénation ordinaire, le monde mécanique qui nous enferme sans qu'on s'en rende compte.</p>
-      <div class="oeuvre-specs">Impression Fine Art Rag · Caisse américaine bois noir<br>Format 50 × 33 cm</div>
+      <div class="oeuvre-specs">Impression Fine Art Rag · Caisse américaine bois noir<br>Format 50 × 33 cm</div><p style="font-size:.68rem;color:#888;line-height:1.7;margin-bottom:1.4rem;">Les œuvres exposées sont les exemplaires de présentation. Votre acquisition donne lieu à un nouveau tirage Fine Art signé et numéroté.</p>
       <div class="oeuvre-footer">
         <div><div class="oeuvre-price">490 €</div><div class="oeuvre-edition">Édition 2/7 — 6 disponibles</div></div>
-        <a href="https://wa.me/33627710560?text=Bonjour%20Phi-Ha%C3%AF%2C%20je%20suis%20int%C3%A9ress%C3%A9%28e%29%20par%20l%27%C5%93uvre%20%C2%AB%20Les%20barreaux%20invisibles%20%C2%BB%20%28490%20%E2%82%AC%2C%20%C3%A9dition%20limit%C3%A9e%207%20ex.%29.%20Pouvez-vous%20me%20donner%20plus%20d%27informations%20%3F" class="btn" target="_blank">Acquérir</a>
+        <a href="https://wa.me/33627710560?text=Bonjour%20Phi-Ha%C3%AF%2C%20je%20suis%20int%C3%A9ress%C3%A9%28e%29%20par%20l%27%C5%93uvre%20%C2%AB%20Les%20barreaux%20invisibles%20%C2%BB%20%28490%20%E2%82%AC%2C%20%C3%A9dition%20limit%C3%A9e%207%20ex.%29.%20Pouvez-vous%20me%20donner%20plus%20d%27informations%20%3F" class="btn" target="_blank">Échanger avec l'artiste</a>
         <span class="livraison-txt">Livraison possible en France et Europe</span>
       </div>
     </div>
@@ -614,15 +617,51 @@
 
 <!-- ACQUISITION -->
 <section class="acquisition">
-  <h3>Acquérir une œuvre</h3>
-  <p>Les œuvres sont exposées physiquement jusqu'au 11 avril 2026 au concept store <a href="https://www.parfumetonart.com" target="_blank" style="color:var(--noir);text-decoration:underline;text-underline-offset:3px;">Parfume Ton Art</a> — 20 rue Castillon, Bordeaux.</p>
-  <p>Chaque tirage est signé, numéroté et livré avec son certificat d'authenticité.<br>Édition strictement limitée à 7 exemplaires par œuvre, tous supports et formats confondus.</p>
+  <h3>Exposition en cours · Café Rostand</h3>
+
+  <p><strong>Café Rostand</strong><br>
+  152 avenue Pasteur<br>
+  33185 Le Haillan</p>
+
+  <p>Depuis le <strong>24 juillet 2026</strong>, les sept œuvres de la série <em>Parenthèse Urbaine</em> sont exposées dans la salle principale du Café Rostand.</p>
+
+  <p>Les œuvres visibles au restaurant sont les exemplaires d'exposition.<br>
+  Toute acquisition donne lieu à la réalisation d'un <strong>nouveau tirage Fine Art</strong>, signé, numéroté et préparé spécialement pour son collectionneur.</p>
+
+  <p>Chaque photographie est limitée à <strong>7 exemplaires</strong>, tous formats confondus, et est accompagnée de son certificat d'authenticité.</p>
+
   <div class="acq-links">
-    <a href="https://wa.me/33627710560" target="_blank">WhatsApp</a>
+    <a href="https://wa.me/33627710560" target="_blank">Échanger avec l'artiste</a>
   </div>
 </section>
 
+<section style="padding:4rem 6vw;background:#faf9f7;text-align:center;border-top:1px solid #e8e6e0;">
+<h3 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:2rem;margin-bottom:1rem;">Si une image vous accompagne encore…</h3>
+
+<p style="max-width:760px;margin:0 auto;font-size:0.95rem;line-height:1.9;color:#555550;">
+Une photographie ne se choisit pas toujours immédiatement.
+Parfois, elle continue simplement d'habiter une pensée.
+Si l'une de ces œuvres résonne encore après votre visite,
+je serai heureux d'échanger avec vous autour de son histoire,
+de son édition ou de sa réalisation.
+</p>
+
+<p style="margin-top:2rem;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:#999;">
+Prochainement
+</p>
+
+<h4 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:1.6rem;margin:.8rem 0;">
+Les Parenthèses
+</h4>
+
+<p style="max-width:760px;margin:0 auto;font-size:0.9rem;line-height:1.9;color:#555550;">
+Quelques fois par an, des déjeuners ou dîners en petit comité seront proposés au Café Rostand, au milieu des œuvres.
+Des rencontres simples pour échanger autour des images, des voyages, de la mémoire et de ce qui nous relie.
+</p>
+</section>
+
 <!-- PARTENAIRE -->
+
 <section style="padding: 3vw 6vw; border-top: 1px solid #e8e6e0; text-align: center;">
   <p style="font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: #bbb; margin-bottom: 1.2rem;">Impression & encadrement</p>
   <p style="font-size: 0.82rem; color: #555550; line-height: 1.8; max-width: 520px; margin: 0 auto;">
@@ -642,14 +681,14 @@
 <!-- MODAL -->
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal">
-    <div class="mlabel">Demande d'acquisition</div>
+    <div class="mlabel">Échanger autour de cette œuvre</div>
     <h4 id="modalTitle"></h4>
     <div class="mprice" id="modalPrice"></div>
     <input type="text" placeholder="Votre nom" id="modalName">
     <input type="email" placeholder="Votre email" id="modalEmail">
     <textarea placeholder="Un message (optionnel)…" id="modalMessage"></textarea>
     <div class="modal-actions">
-      <button class="btn-send" onclick="sendInterest()">Envoyer ma demande</button>
+      <button class="btn-send" onclick="sendInterest()">Envoyer mon message</button>
       <button class="btn-cancel" onclick="closeModal()">Annuler</button>
     </div>
   </div>
