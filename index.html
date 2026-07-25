@@ -35,36 +35,6 @@
     }
     .site-header nav > a:hover { color: var(--noir); }
 
-    /* Dropdown desktop — hover fluide avec pont invisible */
-    .dropdown { position: relative; margin-right: 2rem; }
-    .dropdown-btn {
-      font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--gris); background: none; border: none; cursor: pointer;
-      font-family: 'Raleway', sans-serif; font-weight: 300; padding: 0;
-      transition: color 0.2s; display: flex; align-items: center; gap: 0.3rem;
-    }
-    .dropdown-btn::after { content: '›'; font-size: 0.7rem; transition: transform 0.25s; display: inline-block; }
-    .dropdown:hover .dropdown-btn { color: var(--noir); }
-    .dropdown:hover .dropdown-btn::after { transform: rotate(90deg); }
-    .dropdown-menu {
-      visibility: hidden; opacity: 0; position: absolute;
-      top: 100%; left: 0; padding-top: 0.8rem;
-      transition: opacity 0.18s ease, visibility 0.18s ease;
-      z-index: 200;
-    }
-    .dropdown-menu-inner {
-      background: var(--blanc); border: 1px solid var(--gris-leger);
-      min-width: 190px; padding: 0.5rem 0;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-    }
-    .dropdown:hover .dropdown-menu { visibility: visible; opacity: 1; }
-    .dropdown-menu a {
-      display: block; padding: 0.55rem 1.2rem;
-      font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
-      text-decoration: none; color: var(--gris); transition: color 0.2s; white-space: nowrap;
-    }
-    .dropdown-menu a:hover { color: var(--noir); }
-
     /* Hamburger — caché desktop */
     .site-header .header-right { display: none; justify-content: flex-end; }
     .hamburger { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px; cursor: pointer; padding: 10px; background: none; border: 1px solid var(--noir); width: 44px; height: 44px; }
@@ -262,13 +232,6 @@
       .mobile-menu > a:hover { opacity: 0.6; }
       .mobile-menu .close-menu { position: absolute; top: 1rem; right: 1rem; font-size: 1rem; background: none; border: 1px solid var(--noir); cursor: pointer; color: var(--noir); font-family: 'Raleway', sans-serif; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; letter-spacing: 0; }
       .mobile-logo { height: 48px; width: auto; margin-bottom: 1rem; }
-      .mobile-menu-item { display: flex; flex-direction: column; align-items: center; }
-      .mobile-submenu-toggle { background: none; border: none; cursor: pointer; font-size: 1.4rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--noir); font-family: 'Cormorant Garamond', serif; font-weight: 300; display: flex; align-items: center; gap: 0.6rem; padding: 0; }
-      .mobile-submenu-toggle .arrow { display: inline-block; transition: transform 0.3s; font-style: normal; font-size: 1rem; }
-      .mobile-submenu-toggle.open .arrow { transform: rotate(90deg); }
-      .mobile-submenu { display: none; flex-direction: column; align-items: center; gap: 1rem; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--gris-leger); width: 80%; }
-      .mobile-submenu.active { display: flex; }
-      .mobile-submenu a { font-size: 0.72rem; letter-spacing: 0.28em; text-transform: uppercase; text-decoration: none; color: var(--gris); font-family: 'Raleway', sans-serif; font-weight: 300; }
 
       /* HERO */
       .hero { grid-template-columns: 1fr; min-height: auto; }
@@ -360,20 +323,9 @@
 <div class="mobile-menu" id="mobileMenu">
   <button class="close-menu" onclick="closeMenu()">✕</button>
   <img class="mobile-logo" src="https://images.squarespace-cdn.com/content/5c4ef2b55cfd797e18b902a9/3ec743bc-e2b7-4f80-8484-fcaeafc56907/Signature+Phi+Hai+Noir.png?content-type=image%2Fpng" alt="Phi-Haï Phan">
-  <a href="https://unisens.art" onclick="closeMenu()">Accueil</a>
-  <div class="mobile-menu-item">
-    <button class="mobile-submenu-toggle" id="portfolioToggle" onclick="togglePortfolio()">
-      Portfolio <span class="arrow">›</span>
-    </button>
-    <div class="mobile-submenu" id="portfolioSubmenu">
-      <a href="https://unisens.art/mariagebordeaux" onclick="closeMenu()">L'Union</a>
-      <a href="https://unisens.art/leregard" onclick="closeMenu()">Le Regard</a>
-      <a href="https://unisens.art/parenthese-urbaine" onclick="closeMenu()">Parenthèse Urbaine</a>
-    </div>
-  </div>
-  <a href="https://unisens.art/lademarche" onclick="closeMenu()">La Démarche</a>
-  <a href="https://unisens.art/leursmots" onclick="closeMenu()">Leurs Mots</a>
-  <a href="https://unisens.art/rencontrons-nous" onclick="closeMenu()">Rencontrons-nous</a>
+  <a href="https://presenceintemporelle.fr" onclick="closeMenu()">La Maison</a>
+  <a href="https://presenceintemporelle.fr/les-presences" onclick="closeMenu()">Les Présences</a>
+  <a href="https://presenceintemporelle.fr/les-portes" onclick="closeMenu()">Les Portes</a>
 </div>
 
 <!-- HERO -->
@@ -559,13 +511,13 @@ Les tirages visibles sont les exemplaires d'exposition. Toute acquisition donne 
       <div class="oeuvre-title">« Grâce »</div>
       <div class="oeuvre-price-block">
         <div class="oeuvre-price">490 €</div>
-        <div class="oeuvre-edition reserved-badge">Première œuvre acquise · 5 exemplaires disponibles</div>
+        <div class="oeuvre-edition reserved-badge">Vendue · Tirage réalisable sur demande</div>
       </div>
-      <p class="oeuvre-desc">Première œuvre à avoir rejoint une collection privée. Cette photographie peut encore être réalisée dans la limite des exemplaires restants de son édition. Une image née de l'urgence, où le hasard s'est transformé en grâce.</p>
+      <p class="oeuvre-desc">Cette œuvre a rejoint une collection privée lors d'une précédente exposition. Un nouveau tirage, signé et numéroté, peut être réalisé sur demande dans la limite des exemplaires restants de son édition. Une image née de l'urgence, où le hasard s'est transformé en grâce.</p>
       <div class="oeuvre-specs">Impression Fine Art Rag · Caisse américaine bois noir<br>Format 50 × 33 cm</div><p style="font-size:.68rem;color:#888;line-height:1.7;margin-bottom:1.4rem;">Les œuvres exposées sont les exemplaires de présentation. Votre acquisition donne lieu à un nouveau tirage Fine Art signé et numéroté.</p>
       <div class="oeuvre-footer">
-        <div><div class="oeuvre-price">490 €</div><div class="oeuvre-edition reserved-badge">Première œuvre acquise · 5 exemplaires disponibles</div></div>
-        <a href="https://wa.me/33627710560?text=Bonjour%20Phi-Ha%C3%AF%2C%20je%20suis%20int%C3%A9ress%C3%A9%28e%29%20par%20l%27%C5%93uvre%20%C2%AB%20Gr%C3%A2ce%20%C2%BB%20%28490%20%E2%82%AC%2C%20%C3%A9dition%20limit%C3%A9e%207%20ex.%29.%20Pouvez-vous%20me%20donner%20plus%20d%27informations%20%3F" class="btn" target="_blank">Échanger avec l'artiste</a>
+        <div><div class="oeuvre-price">490 €</div><div class="oeuvre-edition reserved-badge">Vendue · Tirage réalisable sur demande</div></div>
+        <a href="https://wa.me/33627710560?text=Bonjour%20Phi-Ha%C3%AF%2C%20je%20suis%20int%C3%A9ress%C3%A9%28e%29%20par%20un%20tirage%20de%20l%27%C5%93uvre%20%C2%AB%20Gr%C3%A2ce%20%C2%BB%20%28490%20%E2%82%AC%2C%20vendue%2C%20tirage%20sur%20demande%29.%20Pouvez-vous%20me%20donner%20plus%20d%27informations%20%3F" class="btn" target="_blank">Échanger avec l'artiste</a>
         <span class="livraison-txt">Livraison possible en France et Europe</span>
       </div>
     </div>
@@ -599,7 +551,7 @@ Les tirages visibles sont les exemplaires d'exposition. Toute acquisition donne 
 <section class="about">
   <div class="about-img" style="position:relative;">
     <img src="https://images.squarespace-cdn.com/content/5c4ef2b55cfd797e18b902a9/eba1fdb1-aa55-4565-aa34-55ab4c252f0a/IMG_1908.jpg?content-type=image%2Fjpeg" alt="Phi-Haï Phan">
-    <span style="position: absolute; bottom: 0.8rem; right: 1rem; font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; color: #ffffff; font-weight: 500; font-size: 0.62rem; text-shadow: 0 1px 6px rgba(0,0,0,0.8), 0 0 12px rgba(0,0,0,0.6);">© APC Viaud</span>
+    <span style="position: absolute; bottom: 0.8rem; right: 1rem; letter-spacing: 0.12em; text-transform: uppercase; color: #ffffff; font-weight: 500; font-size: 0.62rem; text-shadow: 0 1px 6px rgba(0,0,0,0.8), 0 0 12px rgba(0,0,0,0.6);">© APC Viaud</span>
   </div>
   <div class="about-txt">
     <p class="label">Photographe d'auteur</p>
@@ -609,9 +561,6 @@ Les tirages visibles sont les exemplaires d'exposition. Toute acquisition donne 
     <p>Parenthèse Urbaine est née de cette double errance — la mienne dans les métros du monde, celle de ma famille dans le temps et l'espace. Ces inconnus captés dans le mouvement, c'était une façon de réparer quelque chose.</p>
     <p>Avec <em>Présence Intemporelle</em>, je n'entre plus dans des souterrains. J'entre dans l'intimité des familles pour capturer ce qu'on n'a pas le temps de dire avant qu'il soit trop tard.</p>
     <p><em>Le même geste. Une autre intention.</em></p>
-    <div class="links">
-      <a href="https://unisens.art/lademarche">La Démarche</a>
-    </div>
   </div>
 </section>
 
@@ -726,12 +675,6 @@ Des rencontres simples pour échanger autour des images, des voyages, de la mém
   function closeMenu() {
     document.getElementById('mobileMenu').classList.remove('active');
     document.body.style.overflow = '';
-  }
-  function togglePortfolio() {
-    var submenu = document.getElementById('portfolioSubmenu');
-    var toggle = document.getElementById('portfolioToggle');
-    submenu.classList.toggle('active');
-    toggle.classList.toggle('open');
   }
 
 
