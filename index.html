@@ -226,12 +226,11 @@
       .site-header { grid-template-columns: 1fr auto 1fr; }
       .site-header nav { display: none; }
       .site-header .header-right { display: flex !important; }
-      .mobile-menu { display: none; position: fixed; inset: 0; background: var(--blanc); z-index: 500; flex-direction: column; align-items: center; justify-content: center; gap: 2.4rem; overflow-y: auto; }
+      .mobile-menu { display: none; position: fixed; inset: 0; background: var(--blanc); z-index: 2000; flex-direction: column; align-items: center; justify-content: center; gap: 2.4rem; overflow-y: auto; }
       .mobile-menu.active { display: flex; }
       .mobile-menu > a { font-size: 1.4rem; letter-spacing: 0.22em; text-transform: uppercase; text-decoration: none; color: var(--noir); font-family: 'Cormorant Garamond', serif; font-weight: 300; }
       .mobile-menu > a:hover { opacity: 0.6; }
       .mobile-menu .close-menu { position: absolute; top: 1rem; right: 1rem; font-size: 1rem; background: none; border: 1px solid var(--noir); cursor: pointer; color: var(--noir); font-family: 'Raleway', sans-serif; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; letter-spacing: 0; }
-      .mobile-logo { height: 48px; width: auto; margin-bottom: 1rem; }
 
       /* HERO */
       .hero { grid-template-columns: 1fr; min-height: auto; }
@@ -322,7 +321,6 @@
 <!-- MENU MOBILE -->
 <div class="mobile-menu" id="mobileMenu">
   <button class="close-menu" onclick="closeMenu()">✕</button>
-  <img class="mobile-logo" src="https://images.squarespace-cdn.com/content/5c4ef2b55cfd797e18b902a9/3ec743bc-e2b7-4f80-8484-fcaeafc56907/Signature+Phi+Hai+Noir.png?content-type=image%2Fpng" alt="Phi-Haï Phan">
   <a href="https://presenceintemporelle.fr" onclick="closeMenu()">La Maison</a>
   <a href="https://presenceintemporelle.fr/les-presences" onclick="closeMenu()">Les Présences</a>
   <a href="https://presenceintemporelle.fr/les-portes" onclick="closeMenu()">Les Portes</a>
@@ -356,6 +354,9 @@
 <div style="max-width:1100px;margin:auto;">
 <p style="text-align:center;font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:#999;">Exposition en cours</p>
 <h2 style="text-align:center;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:3rem;margin:.5rem 0 1rem;">Café Rostand · Le Haillan</h2>
+<p style="text-align:center;margin-bottom:1.5rem;">
+  <a href="https://www.google.com/maps/place//data=!4m2!3m1!1s0xd54d1940bd7d793:0x9bf4510122fad5f0?sa=X&ved=1t:8290&ictx=111" target="_blank" style="font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:#111111;text-decoration:none;border-bottom:1px solid #e8e6e0;padding-bottom:.2rem;">Voir sur Google Maps</a>
+</p>
 <p style="max-width:760px;margin:0 auto 2.5rem;text-align:center;color:#555550;line-height:1.9;">
 Les sept œuvres de <em>Parenthèse Urbaine</em> sont actuellement exposées au Café Rostand.
 Les tirages visibles sont les exemplaires d'exposition. Toute acquisition donne lieu à un nouveau tirage Fine Art signé, numéroté et réalisé spécialement pour son collectionneur.
@@ -581,6 +582,7 @@ Les tirages visibles sont les exemplaires d'exposition. Toute acquisition donne 
 
   <div class="acq-links">
     <a href="https://wa.me/33627710560" target="_blank">Échanger avec l'artiste</a>
+    <a href="https://www.google.com/maps/place//data=!4m2!3m1!1s0xd54d1940bd7d793:0x9bf4510122fad5f0?sa=X&ved=1t:8290&ictx=111" target="_blank">Voir sur Google Maps</a>
   </div>
 </section>
 
